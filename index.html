@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Pie de la Letra - Presentación Institucional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* PALETA DE COLORES */
+            --primary: #e32c1f;      /* Rojo Vibrante */
+            --primary-dark: #c01e12; /* Rojo Oscuro (Hover) */
+            --secondary: #2596be;    /* Azul Énfasis */
+            --secondary-dark: #1a7a9c; /* Azul Oscuro */
+            
+            --bg-color: #f0f2f5;
+            --sidebar-bg: #ffffff;
+            --text-main: #2d3436;
+            --text-light: #636e72;
+            
+            /* SOMBRAS SUAVES (UI MODERN) */
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 50px rgba(37, 150, 190, 0.15); /* Sombra azulada sutil */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-main);
+        }
+
+        /* --- WRAPPER ESCALABLE (UX: FIT TO SCREEN) --- */
+        #scale-wrapper {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            transform-origin: center center;
+            transition: transform 0.3s ease-out; /* Suavizar redimensionamiento */
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        #app-container {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- BARRA LATERAL --- */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 0;
+            z-index: 50;
+        }
+
+        .brand {
+            padding: 0 30px;
+            margin-bottom: 50px;
+            border-left: 6px solid var(--primary);
+            margin-left: 0;
+        }
+        
+        .brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .brand span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 15px;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover suave */
+        .nav-item:hover {
+            background-color: rgba(37, 150, 190, 0.08); /* Azul muy tenue */
+            color: var(--secondary);
+            transform: translateX(4px);
+        }
+
+        /* Estado Activo */
+        .nav-item.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(227, 44, 31, 0.3);
+            font-weight: 600;
+        }
+
+        .nav-item i {
+            width: 24px;
+            font-size: 18px;
+            margin-right: 15px;
+            text-align: center;
+        }
+
+        /* Indicador de progreso inferior */
+        .progress-indicator {
+            padding: 0 30px;
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+        }
+
+        /* --- ÁREA DE CONTENIDO --- */
+        .main-content {
+            flex: 1;
+            position: relative;
+            /* Fondo sutil con patrón de puntos muy tenue */
+            background-color: #fff;
+            background-image: radial-gradient(#e32c1f 0.5px, transparent 0.5px), radial-gradient(#e32c1f 0.5px, #ffffff 0.5px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            background-blend-mode: overlay;
+            opacity: 1; 
+            overflow: hidden; /* Importante para slides */
+        }
+        
+        /* Capa blanca sobre el patrón para suavizarlo */
+        .main-content::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.96); z-index: 0;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            padding: 50px 70px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            z-index: 10;
+        }
+
+        /* --- TIPOGRAFÍA --- */
+        h1 { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--primary); margin-bottom: 15px; letter-spacing: -0.5px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 34px; color: var(--secondary); margin-bottom: 25px; letter-spacing: -0.5px; }
+        p { font-size: 17px; line-height: 1.65; color: var(--text-light); margin-bottom: 20px; max-width: 95%; }
+        strong { color: var(--text-main); font-weight: 600; }
+
+        /* --- SLIDE 1: PORTADA --- */
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            gap: 60px;
+        }
+        .hero-text { flex: 1; z-index: 2; }
+        .hero-visual {
+            flex: 1;
+            height: 85%;
+            background: url('http://googleusercontent.com/image_collection/image_retrieval/4670834839922853846') center/cover;
+            border-radius: 30px;
+            box-shadow: -20px 20px 0 var(--secondary);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.8s ease;
+        }
+        .hero-visual:hover { transform: perspective(1000px) rotateY(0deg); }
+
+        .btn-main {
+            background: var(--primary);
+            color: white;
+            padding: 16px 42px;
+            border-radius: 50px;
+            border: none;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(227, 44, 31, 0.3);
+            transition: all 0.2s ease;
+            margin-top: 25px;
+            display: inline-flex;
+            align-items: center; gap: 12px;
+            letter-spacing: 0.5px;
+        }
+        .btn-main:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 15px 30px rgba(227, 44, 31, 0.4);
+            background-color: var(--primary-dark);
+        }
+        .btn-main:active { transform: translateY(1px); }
+
+        /* --- SLIDE 2: PONENTE --- */
+        .profile-card {
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .profile-img {
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--secondary);
+            padding: 6px;
+            background: white;
+        }
+        .pill {
+            background: #f4faff; 
+            color: var(--secondary);
+            padding: 10px 20px; 
+            border-radius: 30px; 
+            font-size: 14px; 
+            font-weight: 600;
+            border: 1px solid rgba(37, 150, 190, 0.2);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        /* --- SLIDE 3: TABS --- */
+        .tabs-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 35px;
+            background: #f8f9fa;
+            padding: 6px;
+            border-radius: 16px;
+            width: fit-content;
+        }
+        .tab-btn {
+            padding: 12px 32px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #888;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+
+        .info-box {
+            background: white;
+            border-left: 6px solid var(--secondary);
+            padding: 40px;
+            border-radius: 0 20px 20px 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* --- SLIDE 4: FLIP CARDS (UX MEJORADA) --- */
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            height: 380px;
+            perspective: 1500px;
+        }
+        
+        .flip-card {
+            width: 100%; height: 100%;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+            box-shadow: var(--shadow-md);
+            border-radius: 20px;
+        }
+
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .flip-front {
+            background-color: white;
+            border-top: 8px solid var(--primary);
+        }
+        
+        /* UX FIX: Fondo azul es mejor para leer que rojo brillante */
+        .flip-back {
+            background-color: var(--secondary); /* Azul */
+            color: white;
+            transform: rotateY(180deg);
+            text-align: left;
+        }
+
+        .flip-back h3 { color: white !important; margin-bottom: 15px; font-size: 22px; }
+        .flip-back p, .flip-back li { color: rgba(255,255,255,0.9); font-size: 15px; }
+        .flip-back ul { padding-left: 20px; width: 100%; }
+        .flip-back li { margin-bottom: 8px; }
+        
+        .flip-icon { font-size: 65px; color: var(--primary); margin-bottom: 25px; }
+
+        /* --- SLIDE 5: ERRORES --- */
+        .error-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        .error-btn {
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: var(--text-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .error-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+        }
+        .error-btn i { font-size: 48px; margin-bottom: 12px; }
+        .error-btn span { font-weight: 600; font-size: 16px; }
+
+        /* --- MODALES --- */
+        .modal-backdrop {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: 999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px); /* Efecto Glass */
+        }
+        .modal-backdrop.visible { display: flex; animation: fadeIn 0.3s; }
+        .modal-content {
+            background: white;
+            width: 550px;
+            padding: 50px;
+            border-radius: 24px;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            border-top: 8px solid var(--primary);
+        }
+        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-modal { 
+            position: absolute; top: 20px; right: 25px; 
+            font-size: 28px; cursor: pointer; color: #ccc;
+            transition: color 0.2s;
+        }
+        .close-modal:hover { color: var(--primary); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Wrapper para escalado automático -->
+    <div id="scale-wrapper">
+        <div id="app-container">
+            
+            <!-- BARRA LATERAL -->
+            <nav class="sidebar">
+                <div class="brand">
+                    <h2>Al Pie de la Letra</h2>
+                    <span>ESTRATEGIA</span>
+                </div>
+                
+                <div class="nav-menu">
+                    <div class="nav-item active" onclick="goToSlide(0)">
+                        <i class="fa-solid fa-rocket"></i> Inicio
+                    </div>
+                    <div class="nav-item" onclick="goToSlide(1)">
+                        <i class="fa-solid fa-user-tie"></i> Ponente
+                    </div>
+                    <div class="nav-item" onclick="goToSlide(2)">
+                        <i class="fa-solid fa-handshake"></i> Relaciones
+                    </div>
+                    <div class="nav-item" onclick="goToSlide(3)">
+                        <i class="fa-solid fa-building-columns"></i> Sector Público
+                    </div>
+                    <div class="nav-item" onclick="goToSlide(4)">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Riesgos
+                    </div>
+                    <div class="nav-item" onclick="goToSlide(5)">
+                        <i class="fa-solid fa-comments"></i> Cierre
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    Diapositiva <span id="current-slide-num">1</span> de 6
+                </div>
+            </nav>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="main-content">
+
+                <!-- SLIDE 0: INICIO -->
+                <section class="slide active" id="slide-0">
+                    <div class="hero-wrapper">
+                        <div class="hero-text">
+                            <h3 style="color:var(--secondary); letter-spacing: 2px; font-size: 14px; font-weight: 700; margin-bottom: 10px;">ESCUELA NACIONAL DE LIBRERÍAS</h3>
+                            <h1>Ventas Institucionales <br>y Compra Pública</h1>
+                            <p>Una guía estratégica para potenciar el alcance comercial y transformar su librería en un aliado cultural indispensable.</p>
+                            <button class="btn-main" onclick="goToSlide(1)">
+                                Iniciar Presentación <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="hero-visual"></div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 1: PONENTE -->
+                <section class="slide" id="slide-1">
+                    <h2>Conozca a su Docente</h2>
+                    <div class="profile-card">
+                        <img src="http://googleusercontent.com/image_generation_content/2" alt="Gloria Melo" class="profile-img">
+                        <div>
+                            <h1 style="font-size: 46px; margin-bottom: 8px;">Gloria Melo</h1>
+                            <p style="color:var(--secondary); font-weight: 600; font-size: 18px; margin-bottom: 20px;">Co-fundadora, Librería Al Pie de la Letra</p>
+                            <p>Economista de profesión y librera por vocación. Desde 1993, ha liderado la transformación de <em>Al Pie de la Letra</em> en un referente cultural, integrando espacios de lectura con gestión comercial eficiente.</p>
+                            <div style="display: flex; gap: 15px; margin-top: 25px;">
+                                <div class="pill"><i class="fa-solid fa-check"></i> Gestión Cultural</div>
+                                <div class="pill"><i class="fa-solid fa-check"></i> Licitaciones</div>
+                                <div class="pill"><i class="fa-solid fa-check"></i> Curaduría</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 2: RELACIONAMIENTO (TABS) -->
+                <section class="slide" id="slide-2">
+                    <h2>Estrategias de Relacionamiento</h2>
+                    
+                    <div class="tabs-header">
+                        <div class="tab-btn active" onclick="openTab(0)">1. Cercanía</div>
+                        <div class="tab-btn" onclick="openTab(1)">2. Eventos</div>
+                        <div class="tab-btn" onclick="openTab(2)">3. Convenios</div>
+                    </div>
+
+                    <div class="tab-content active" id="tab-0">
+                        <div class="info-box">
+                            <h3 style="color:var(--primary); margin-bottom: 15px; font-size: 24px;">El Mapa del Tesoro Local (Radio 2km)</h3>
+                            <p>Antes de buscar grandes licitaciones, conquiste su entorno inmediato:</p>
+                            <ul style="margin-left: 20px; color: var(--text-light); margin-top: 15px; line-height: 1.8;">
+                                <li><strong>Colegios y Jardines:</strong> Ofrezca "La Hora del Cuento" como gancho para visitas pedagógicas.</li>
+                                <li><strong>Empresas Vecinas:</strong> Proponga bonos de regalo corporativos para fin de año.</li>
+                                <li><strong>Cafés y Restaurantes:</strong> Deje libros en consignación o cree "Menús Literarios".</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-1">
+                        <div class="info-box">
+                            <h3 style="color:var(--primary); margin-bottom: 15px; font-size: 24px;">Ferias: Salir de la Estantería</h3>
+                            <p>La librería debe ser itinerante cuando el mercado lo exige:</p>
+                            <ul style="margin-left: 20px; color: var(--text-light); margin-top: 15px; line-height: 1.8;">
+                                <li><strong>Grandes Ferias (FILBo, Fiesta del Libro):</strong> Posicionamiento de marca y networking.</li>
+                                <li><strong>Ferias Escolares:</strong> Venta directa de plan lector (Alto Volumen).</li>
+                                <li><strong>Ferias Corporativas:</strong> Stands en semanas de la salud o bienestar laboral.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-2">
+                        <div class="info-box">
+                            <h3 style="color:var(--primary); margin-bottom: 15px; font-size: 24px;">Alianzas que Eliminan Barreras</h3>
+                            <p>Facilite la compra mediante terceros:</p>
+                            <ul style="margin-left: 20px; color: var(--text-light); margin-top: 15px; line-height: 1.8;">
+                                <li><strong>Libranzas:</strong> Convenios con fondos de empleados. Descuento por nómina = Venta segura.</li>
+                                <li><strong>Cajas de Compensación:</strong> (Ej: Comfama) Tarifas diferenciales para afiliados.</li>
+                                <li><strong>Clínicas de Libros:</strong> Servicios de consultoría literaria personalizada.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 3: SECTOR PÚBLICO (FLIP CARDS) -->
+                <section class="slide" id="slide-3">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                        <h2>Venta Pública y SECOP II</h2>
+                        <p style="font-size: 13px; color: var(--secondary); margin-bottom: 25px;"><i class="fa-solid fa-hand-pointer"></i> Pase el mouse sobre las tarjetas</p>
+                    </div>
+                    
+                    <div class="flip-grid">
+                        <!-- Card 1 -->
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-front">
+                                    <i class="fa-solid fa-scale-balanced flip-icon"></i>
+                                    <h3 style="color:var(--text-main)">Marco Legal</h3>
+                                    <p>Las reglas del juego</p>
+                                </div>
+                                <div class="flip-back">
+                                    <h3>Ley 80 de 1993</h3>
+                                    <p>Estatuto General de Contratación Pública.</p>
+                                    <ul style="margin-top: 15px;">
+                                        <li>Todo proceso es auditable.</li>
+                                        <li>Verifique inhabilidades.</li>
+                                        <li>Ley del Libro (Exenciones).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-front">
+                                    <i class="fa-solid fa-laptop-code flip-icon"></i>
+                                    <h3 style="color:var(--text-main)">SECOP II</h3>
+                                    <p>Plataforma Digital</p>
+                                </div>
+                                <div class="flip-back">
+                                    <h3>Mercado Digital</h3>
+                                    <ul>
+                                        <li>Registro Gratuito como Proveedor.</li>
+                                        <li>Códigos UNSPSC (Clasificación).</li>
+                                        <li>Alertas de Licitación.</li>
+                                    </ul>
+                                    <p style="margin-top:10px; font-size:12px; opacity:0.8;">¡Suba la oferta antes del cierre!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-front">
+                                    <i class="fa-solid fa-file-signature flip-icon"></i>
+                                    <h3 style="color:var(--text-main)">Venta Directa</h3>
+                                    <p>Documentación Vital</p>
+                                </div>
+                                <div class="flip-back">
+                                    <h3>Checklist Obligatorio</h3>
+                                    <ul>
+                                        <li>RUT Actualizado.</li>
+                                        <li>Cámara Comercio (< 90 días).</li>
+                                        <li>Contraloría (Fiscal).</li>
+                                        <li>Procuraduría (Disciplinario).</li>
+                                        <li>Policía (Judicial).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 4: ERRORES -->
+                <section class="slide" id="slide-4">
+                    <h2>¡Cuidado! Riesgos Comunes</h2>
+                    <p>Haga clic en los íconos para ver el detalle del riesgo:</p>
+                    <div class="error-grid">
+                        <div class="error-btn" onclick="openModal('m-flujo')">
+                            <i class="fa-solid fa-money-bill-trend-up"></i>
+                            <span>Flujo de Caja</span>
+                        </div>
+                        <div class="error-btn" onclick="openModal('m-stock')">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                            <span>Stock Irreal</span>
+                        </div>
+                        <div class="error-btn" onclick="openModal('m-legal')">
+                            <i class="fa-solid fa-file-contract"></i>
+                            <span>Informalidad</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SLIDE 5: CIERRE -->
+                <section class="slide" id="slide-5">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                        <h1 style="font-size: 64px; margin-bottom: 20px;">¡Gracias!</h1>
+                        <p style="font-size: 22px; max-width: 700px; font-style: italic; color: var(--text-main);">"La venta institucional es la mejor forma de llevar la cultura a donde la gente trabaja y estudia."</p>
+                        
+                        <div style="margin-top: 50px; background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow-md); border: 1px solid #eee; width: 500px;">
+                            <h3 style="color:var(--primary); margin-bottom: 20px; font-size: 20px;">Contacto & Dudas</h3>
+                            <p style="margin-bottom: 10px;"><i class="fa-solid fa-envelope" style="color:var(--secondary); margin-right:10px;"></i> contacto@alpiedelaletra.com</p>
+                            <p><i class="fa-solid fa-location-dot" style="color:var(--secondary); margin-right:10px;"></i> Medellín, Colombia</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- MODALES -->
+            <div class="modal-backdrop" id="m-flujo" onclick="closeModal(event)">
+                <div class="modal-content">
+                    <span class="close-modal" onclick="forceClose('m-flujo')">&times;</span>
+                    <h2 style="color:var(--primary); margin-bottom: 20px;">Peligro Financiero</h2>
+                    <p>Las instituciones (especialmente las públicas) suelen pagar a <strong>60 o 90 días</strong>. Si usted paga a sus editoriales a 30 días de contado, se quedará sin efectivo para operar (nómina, arriendo).</p>
+                    <div style="margin-top: 20px; padding: 15px; background: #fff5f5; border-radius: 10px; color: var(--primary-dark); font-size: 14px;">
+                        <i class="fa-solid fa-lightbulb"></i> <strong>Solución:</strong> Negocie plazos extendidos con sus proveedores antes de cerrar el trato institucional.
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-backdrop" id="m-stock" onclick="closeModal(event)">
+                <div class="modal-content">
+                    <span class="close-modal" onclick="forceClose('m-stock')">&times;</span>
+                    <h2 style="color:var(--primary); margin-bottom: 20px;">Stock Fantasma</h2>
+                    <p>Nunca ofertes en una licitación pública una cantidad masiva de libros basándote solo en el sistema. El sistema puede decir "Disponible", pero el libro puede estar agotado o dañado.</p>
+                    <div style="margin-top: 20px; padding: 15px; background: #fff5f5; border-radius: 10px; color: var(--primary-dark); font-size: 14px;">
+                        <i class="fa-solid fa-lightbulb"></i> <strong>Solución:</strong> Exija carta de compromiso de reserva a la editorial.
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-backdrop" id="m-legal" onclick="closeModal(event)">
+                <div class="modal-content">
+                    <span class="close-modal" onclick="forceClose('m-legal')">&times;</span>
+                    <h2 style="color:var(--primary); margin-bottom: 20px;">Informalidad</h2>
+                    <p>Un solo día de retraso en el pago de la Seguridad Social (PILA) o un RUT desactualizado bloquean inmediatamente cualquier pago del estado, sin excepciones.</p>
+                    <div style="margin-top: 20px; padding: 15px; background: #fff5f5; border-radius: 10px; color: var(--primary-dark); font-size: 14px;">
+                        <i class="fa-solid fa-lightbulb"></i> <strong>Solución:</strong> Mantenga una carpeta digital de legales actualizada mes a mes.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        /* --- LÓGICA DE ESCALADO (FIT TO SCREEN) --- */
+        function fitToScreen() {
+            const wrapper = document.getElementById('scale-wrapper');
+            const targetWidth = 1280;
+            const targetHeight = 720;
+            
+            // Calcular escala basada en el tamaño de la ventana
+            const scaleX = window.innerWidth / targetWidth;
+            const scaleY = window.innerHeight / targetHeight;
+            
+            // Usar la escala menor para asegurar que todo quepa sin recortes
+            let scale = Math.min(scaleX, scaleY);
+            
+            // Dejar un pequeño margen (95% del tamaño total)
+            scale = scale * 0.95;
+
+            wrapper.style.transform = `scale(${scale})`;
+        }
+
+        // Escalar al cargar y al redimensionar ventana
+        window.addEventListener('load', fitToScreen);
+        window.addEventListener('resize', fitToScreen);
+
+
+        /* --- LÓGICA DE NAVEGACIÓN --- */
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            // Resetear
+            slides.forEach(s => s.classList.remove('active'));
+            navItems.forEach(n => n.classList.remove('active'));
+            
+            // Activar
+            if(slides[index]) slides[index].classList.add('active');
+            if(navItems[index]) navItems[index].classList.add('active');
+
+            // Actualizar contador
+            document.getElementById('current-slide-num').innerText = index + 1;
+        }
+
+        function openTab(index) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            if(contents[index]) contents[index].classList.add('active');
+            if(btns[index]) btns[index].classList.add('active');
+        }
+
+        /* --- LÓGICA DE MODALES --- */
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if(modal) modal.classList.add('visible');
+        }
+
+        function closeModal(event) {
+            if(event.target.classList.contains('modal-backdrop')) {
+                event.target.classList.remove('visible');
+            }
+        }
+
+        function forceClose(id) {
+            document.getElementById(id).classList.remove('visible');
+        }
+
+        // Iniciar en slide 0
+        document.addEventListener('DOMContentLoaded', () => {
+            goToSlide(0);
+            fitToScreen(); // Asegurar escalado inicial
+        });
+    </script>
+</body>
+</html>
