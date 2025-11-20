@@ -7,8 +7,7 @@
     <title>Al Pie de la Letra - Estrategia Institucional</title>
     
     <!-- =========================================
-       DEPENDENCIAS (FUENTES E ICONOS)
-       Carga optimizada desde CDN seguros (HTTPS)
+       DEPENDENCIAS EXTERNAS (Optimized Load)
        ========================================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,29 +16,30 @@
 
     <style>
         /* =========================================
-           1. VARIABLES GLOBALES (DESIGN SYSTEM)
-           Cambiar estos valores afecta toda la UI.
+           1. VARIABLES DE DISEÑO (Design Tokens)
+           Cambie estos valores para ajustar el tema globalmente.
            ========================================= */
         :root {
             /* Colores de Marca */
             --color-primary: #e32c1f;       /* Rojo Institucional */
-            --color-primary-dark: #c01e12;  /* Rojo Oscuro (Hover) */
-            --color-secondary: #2596be;     /* Azul Contraste/Énfasis */
+            --color-primary-dark: #c01e12;  /* Rojo Interacción */
+            --color-secondary: #2596be;     /* Azul Acento */
             --color-secondary-dark: #1a7a9c;
-            --color-success: #2ecc71;       /* Verde Éxito (Checklist) */
+            --color-success: #2ecc71;       /* Verde Éxito */
             
-            /* Fondos y Textos */
-            --bg-app: #f0f2f5;              /* Fondo fuera del slide */
+            /* Fondos y Superficies */
+            --bg-app: #f0f2f5;              /* Fondo externo */
             --bg-card: #ffffff;             /* Fondo del slide */
-            --text-main: #2d3436;           /* Texto principal */
-            --text-muted: #636e72;          /* Texto secundario */
-            --text-inverse: #ffffff;        /* Texto sobre fondos oscuros */
+            
+            /* Tipografía */
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --text-inverse: #ffffff;
 
             /* Efectos Visuales */
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
             --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
             --shadow-lg: 0 20px 50px rgba(37, 150, 190, 0.15);
-            --radius-card: 24px;
             
             /* Animaciones */
             --anim-fast: 0.2s ease;
@@ -61,11 +61,10 @@
             align-items: center;
             overflow: hidden;
             color: var(--text-main);
+            margin: 0;
         }
 
-        /* ESCALADO INTELIGENTE: 
-           Mantiene el aspecto 16:9 (1280x720) y escala todo el contenido
-           para ajustarse a la ventana del navegador sin deformarse. */
+        /* ESCALADO: Mantiene el aspecto 16:9 y escala el contenido */
         #scale-wrapper {
             width: 1280px;
             height: 720px;
@@ -79,7 +78,7 @@
             width: 100%;
             height: 100%;
             background-color: var(--bg-card);
-            border-radius: var(--radius-card);
+            border-radius: 24px;
             box-shadow: var(--shadow-lg);
             display: flex;
             overflow: hidden;
@@ -87,7 +86,7 @@
         }
 
         /* =========================================
-           3. BARRA LATERAL (SIDEBAR)
+           3. NAVEGACIÓN LATERAL
            ========================================= */
         .sidebar {
             width: 280px;
@@ -168,7 +167,7 @@
         }
 
         /* =========================================
-           4. SLIDES Y CONTENIDO
+           4. SLIDES (DIAPOSITIVAS)
            ========================================= */
         .main-content {
             flex: 1;
@@ -182,32 +181,25 @@
             overflow: hidden;
         }
         
-        /* Máscara blanca para suavizar el patrón */
+        /* Máscara de opacidad para el patrón */
         .main-content::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255,255,255,0.96); z-index: 0;
         }
 
         .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            padding: 50px 70px;
-            opacity: 0;
-            visibility: hidden;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            padding: 50px 70px; opacity: 0; visibility: hidden;
             transform: translateY(15px);
             transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            pointer-events: none; /* Desactiva clics cuando está oculto */
+            z-index: 1; display: flex; flex-direction: column;
+            pointer-events: none; /* Evita clics en slides ocultos */
         }
 
         .slide.active {
-            opacity: 1;
-            visibility: visible;
+            opacity: 1; visibility: visible;
             transform: translateY(0);
-            z-index: 10;
-            pointer-events: auto;
+            z-index: 10; pointer-events: auto;
         }
 
         /* Tipografía */
@@ -216,24 +208,24 @@
         p { font-size: 17px; line-height: 1.65; color: var(--text-muted); margin-bottom: 20px; max-width: 95%; }
 
         /* =========================================
-           5. COMPONENTES UI
+           5. COMPONENTES UI REUTILIZABLES
            ========================================= */
         
         /* Botones */
         .btn-main {
             background: var(--color-primary); color: var(--text-inverse);
             padding: 16px 42px; border-radius: 50px; border: none;
-            font-size: 17px; font-weight: 600; cursor: pointer;
+            font-size: 17px; font-weight: 600; cursor: pointer; text-decoration: none;
             box-shadow: 0 10px 25px rgba(227, 44, 31, 0.3);
-            transition: all 0.2s ease; margin-top: 25px; display: inline-flex; align-items: center; gap: 12px;
+            transition: all var(--anim-fast); margin-top: 25px; display: inline-flex; align-items: center; gap: 12px;
         }
         .btn-main:hover { transform: translateY(-2px); background-color: var(--color-primary-dark); }
 
         .btn-secondary-outline {
             background: transparent; color: var(--color-secondary);
             border: 2px solid var(--color-secondary); padding: 12px 30px;
-            border-radius: 50px; font-weight: 600; cursor: pointer;
-            transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px;
+            border-radius: 50px; font-weight: 600; cursor: pointer; text-decoration: none;
+            transition: all var(--anim-fast); display: inline-flex; align-items: center; gap: 10px;
         }
         .btn-secondary-outline:hover { background: var(--color-secondary); color: white; }
 
@@ -241,22 +233,26 @@
             background: transparent; color: white;
             border: 2px solid rgba(255,255,255,0.8); padding: 8px 20px;
             border-radius: 50px; font-size: 13px; font-weight: 600;
-            cursor: pointer; transition: all 0.3s; margin-top: 15px;
+            cursor: pointer; transition: all var(--anim-fast); margin-top: 15px;
             display: inline-flex; align-items: center; gap: 8px;
         }
         .btn-white-outline:hover { background: white; color: var(--color-secondary); }
 
-        /* Grid Layouts */
+        /* Redes Sociales */
+        .social-link {
+            color: var(--text-muted); font-size: 26px; transition: all var(--anim-fast);
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 50px; height: 50px; border-radius: 50%; background: #f5f5f5; text-decoration: none;
+        }
+        .social-link:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .social-link.web:hover { color: var(--color-secondary); background: #eef4fb; }
+        .social-link.insta:hover { color: #E1306C; background: #fff0f5; }
+        .social-link.fb:hover { color: #1877F2; background: #eaf4ff; }
+
+        /* Grids & Layouts */
         .hero-wrapper { display: flex; align-items: center; height: 100%; gap: 60px; }
         .hero-text { flex: 1; z-index: 2; }
-        .hero-visual {
-            flex: 1; height: 85%;
-            background: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80&w=1000') center/cover;
-            border-radius: 30px;
-            box-shadow: -20px 20px 0 var(--color-secondary);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.8s ease;
-        }
+        .hero-visual { flex: 1; height: 85%; background: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80&w=1000') center/cover; border-radius: 30px; box-shadow: -20px 20px 0 var(--color-secondary); transform: perspective(1000px) rotateY(-5deg); transition: transform 0.8s ease; }
         .hero-visual:hover { transform: perspective(1000px) rotateY(0deg); }
 
         .lib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; height: 100%; align-items: center; }
@@ -285,8 +281,8 @@
         .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
         .tab-content.active { display: block; }
         .info-box { background: white; border-left: 6px solid var(--color-secondary); padding: 40px; border-radius: 0 20px 20px 0; box-shadow: var(--shadow-sm); }
-
-        /* Flip Cards (Tarjetas Giratorias) */
+        
+        /* Flip Cards */
         .flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; height: 380px; perspective: 1500px; }
         .flip-card { width: 100%; height: 100%; cursor: pointer; }
         .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.7s; transform-style: preserve-3d; box-shadow: var(--shadow-sm); border-radius: 20px; }
@@ -297,39 +293,32 @@
         .flip-back h3, .flip-back p, .flip-back li { color: white; }
         .flip-icon { font-size: 65px; color: var(--color-primary); margin-bottom: 25px; }
 
-        /* Errores (Riesgos) */
-        .error-grid { display: flex; justify-content: center; gap: 50px; margin-top: 40px; }
-        .error-btn { width: 200px; height: 200px; border-radius: 50%; background: white; border: 4px solid var(--bg-app); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s; color: var(--text-muted); box-shadow: var(--shadow-sm); }
-        .error-btn:hover { border-color: var(--color-primary); color: var(--color-primary); transform: translateY(-10px); }
-        .error-btn i { font-size: 48px; margin-bottom: 12px; }
+        /* Riesgos Modernos (Cards) */
+        .risk-grid { display: flex; gap: 30px; justify-content: center; margin-top: 30px; height: 350px; }
+        .risk-card { flex: 1; background: white; border-radius: 20px; box-shadow: var(--shadow-md); padding: 30px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; transition: all 0.4s; cursor: pointer; border-bottom: 6px solid var(--color-primary); }
+        .risk-card:hover { transform: translateY(-15px); box-shadow: var(--shadow-lg); }
+        .risk-icon-wrapper { width: 80px; height: 80px; background: #fff0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 32px; color: var(--color-primary); transition: all 0.3s; position: relative; z-index: 2; }
+        .risk-card:hover .risk-icon-wrapper { background: var(--color-primary); color: white; transform: scale(1.1) rotate(10deg); }
+        .risk-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); position: relative; z-index: 2; }
+        .risk-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; position: relative; z-index: 2; }
+        .risk-action { margin-top: auto; color: var(--color-primary); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(10px); transition: all 0.3s; position: relative; z-index: 2; }
+        .risk-card:hover .risk-action { opacity: 1; transform: translateY(0); }
 
         /* =========================================
-           7. MODALES (VENTANAS EMERGENTES)
-           Optimizados con scroll interno
+           6. MODALES (VENTANAS EMERGENTES)
            ========================================= */
-        .modal-backdrop {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.95); z-index: 999;
-            display: none; justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
-        }
+        .modal-backdrop { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); z-index: 999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         .modal-backdrop.visible { display: flex; }
         
-        .modal-content {
-            background: white; width: 90%; max-width: 1100px; padding: 50px;
-            border-radius: 24px; position: relative;
-            animation: slideUp 0.3s; box-shadow: var(--shadow-lg);
-            border-top: 8px solid var(--color-primary);
-            
-            /* SCROLL INTERNO IMPORTANTE */
-            max-height: 85vh;
-            overflow-y: auto;
-            
-            /* Scrollbar personalizada */
-            scrollbar-width: thin;
-            scrollbar-color: var(--color-secondary) #f0f0f0;
+        .modal-content { 
+            background: white; width: 90%; max-width: 1100px; padding: 50px; 
+            border-radius: 24px; position: relative; animation: slideUp 0.3s; 
+            box-shadow: var(--shadow-lg); border-top: 8px solid var(--color-primary); 
+            /* Scroll Fix */
+            max-height: 85vh; overflow-y: auto;
+            scrollbar-width: thin; scrollbar-color: var(--color-secondary) #f0f0f0;
         }
-        
+        /* Scrollbar Webkit */
         .modal-content::-webkit-scrollbar { width: 8px; }
         .modal-content::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 10px; }
         .modal-content::-webkit-scrollbar-thumb { background-color: var(--color-secondary); border-radius: 10px; }
@@ -338,7 +327,7 @@
         .close-modal { position: absolute; top: 20px; right: 25px; font-size: 28px; cursor: pointer; color: #ccc; transition: color 0.2s; }
         .close-modal:hover { color: var(--color-primary); }
 
-        /* Estilos de Listas Legales */
+        /* Elementos dentro de Modales */
         .legal-list { list-style: none; padding: 0; margin-top: 20px; }
         .legal-list li { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .legal-list strong { color: var(--color-secondary); font-size: 18px; display: block; margin-bottom: 5px; }
@@ -354,14 +343,12 @@
         .h-timeline-content { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px solid #eee; font-size: 14px; color: #555; line-height: 1.6; box-shadow: var(--shadow-sm); min-height: 150px; }
         .h-timeline-content strong { color: var(--color-primary); display: block; margin-bottom: 5px; font-size: 16px; }
 
-        /* Checklist Styles */
+        /* Checklist */
         .check-preview { list-style: none; padding-left: 0; margin-bottom: 20px; text-align: left; width: 100%; }
         .check-preview li { margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
         .check-preview i { color: #fff; }
-        
         .progress-container { width: 100%; background-color: #f0f0f0; border-radius: 50px; height: 25px; margin-bottom: 30px; overflow: hidden; border: 1px solid #e0e0e0; }
         .progress-bar { width: 0%; height: 100%; background-color: var(--color-success); border-radius: 50px; text-align: center; line-height: 25px; color: white; font-weight: 700; font-size: 12px; transition: width 0.5s ease-in-out; }
-        
         .interactive-checklist { display: flex; flex-direction: column; gap: 15px; }
         .check-item { background: white; border: 2px solid #eee; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: all 0.2s; }
         .check-item:hover { border-color: var(--color-secondary); transform: translateX(5px); }
@@ -372,6 +359,8 @@
         .check-text span { font-size: 13px; color: var(--text-muted); }
         .check-item.checked .check-text strong { color: var(--color-success); text-decoration: line-through; }
 
+        /* Animaciones */
+        @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
     </style>
 </head>
 <body>
@@ -379,43 +368,25 @@
     <div id="scale-wrapper">
         <div id="app-container">
             
-            <!-- NAV LATERAL -->
+            <!-- SIDEBAR: Navegación -->
             <nav class="sidebar">
                 <div class="brand">
                     <h2>Al Pie de la Letra</h2>
                     <span>ESTRATEGIA</span>
                 </div>
-                
                 <div class="nav-menu">
-                    <div class="nav-item active" onclick="app.goToSlide(0)">
-                        <i class="fa-solid fa-rocket"></i> Inicio
-                    </div>
-                    <div class="nav-item" onclick="app.goToSlide(1)">
-                        <i class="fa-solid fa-book-open"></i> La Librería
-                    </div>
-                    <div class="nav-item" onclick="app.goToSlide(2)">
-                        <i class="fa-solid fa-user-tie"></i> Ponente
-                    </div>
-                    <div class="nav-item" onclick="app.goToSlide(3)">
-                        <i class="fa-solid fa-handshake"></i> Relaciones
-                    </div>
-                    <div class="nav-item" onclick="app.goToSlide(4)">
-                        <i class="fa-solid fa-building-columns"></i> Sector Público
-                    </div>
-                    <div class="nav-item" onclick="app.goToSlide(5)">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Riesgos
-                    </div>
-                    <div class="nav-item" onclick="app.goToSlide(6)">
-                        <i class="fa-solid fa-comments"></i> Cierre
-                    </div>
+                    <div class="nav-item active" onclick="app.goToSlide(0)"><i class="fa-solid fa-rocket"></i> Inicio</div>
+                    <div class="nav-item" onclick="app.goToSlide(1)"><i class="fa-solid fa-book-open"></i> La Librería</div>
+                    <div class="nav-item" onclick="app.goToSlide(2)"><i class="fa-solid fa-user-tie"></i> Ponente</div>
+                    <div class="nav-item" onclick="app.goToSlide(3)"><i class="fa-solid fa-handshake"></i> Relaciones</div>
+                    <div class="nav-item" onclick="app.goToSlide(4)"><i class="fa-solid fa-building-columns"></i> Sector Público</div>
+                    <div class="nav-item" onclick="app.goToSlide(5)"><i class="fa-solid fa-triangle-exclamation"></i> Riesgos</div>
+                    <div class="nav-item" onclick="app.goToSlide(6)"><i class="fa-solid fa-comments"></i> Cierre</div>
                 </div>
-
-                <div class="progress-indicator">
-                    Diapositiva <span id="current-slide-num">1</span> de 7
-                </div>
+                <div class="progress-indicator">Diapositiva <span id="current-slide-num">1</span> de 7</div>
             </nav>
 
-            <!-- MAIN CONTENT -->
+            <!-- CONTENIDO -->
             <main class="main-content">
 
                 <!-- SLIDE 0: PORTADA -->
@@ -425,9 +396,7 @@
                             <h3 style="color:var(--color-secondary); letter-spacing: 2px; font-size: 14px; font-weight: 700; margin-bottom: 10px;">ESCUELA NACIONAL DE LIBRERÍAS</h3>
                             <h1>Ventas Institucionales <br>y Compra Pública</h1>
                             <p>Una guía estratégica para potenciar el alcance comercial y transformar su librería en un aliado cultural indispensable.</p>
-                            <button class="btn-main" onclick="app.goToSlide(1)">
-                                Iniciar Presentación <i class="fa-solid fa-arrow-right"></i>
-                            </button>
+                            <button class="btn-main" onclick="app.goToSlide(1)">Iniciar Presentación <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                         <div class="hero-visual"></div>
                     </div>
@@ -441,188 +410,51 @@
                             <h1>Al Pie de la Letra</h1>
                             <p style="font-size: 16px; color: #555; margin-bottom:15px;"><strong>Tradición y Familia:</strong> La familia Melo González, educadores y editores, fundó este espacio para la conversación social y la cultura.</p>
                             <p style="font-size: 16px; color: #555;">Nuestra filosofía incluye títulos de fondo (filosofía, sociología, clásicos) y una escucha activa a nuestros lectores para construir el catálogo.</p>
-                            
                             <div class="lib-stats">
-                                <div class="stat-item">
-                                    <div class="stat-num">30+</div>
-                                    <div class="stat-label">Años de Historia</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-num">2</div>
-                                    <div class="stat-label">Sedes Físicas</div>
-                                </div>
+                                <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Años de Historia</div></div>
+                                <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Sedes Físicas</div></div>
                             </div>
-
-                            <div style="margin-top: 30px;">
-                                <button class="btn-secondary-outline" onclick="app.openModal('m-historia')">
-                                    <i class="fa-solid fa-clock-rotate-left"></i> Ver Nuestra Historia
-                                </button>
-                            </div>
+                            <div style="margin-top: 30px;"><button class="btn-secondary-outline" onclick="app.openModal('m-historia')"><i class="fa-solid fa-clock-rotate-left"></i> Ver Nuestra Historia</button></div>
                         </div>
-                        <div class="lib-image-collage">
-                            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1000" alt="Librería interior" class="img-main">
-                            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800" alt="Libros detalle" class="img-secondary">
-                        </div>
+                        <div class="lib-image-collage"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1000" alt="Librería interior" class="img-main"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800" alt="Libros detalle" class="img-secondary"></div>
                     </div>
                 </section>
 
                 <!-- SLIDE 2: PONENTE -->
                 <section class="slide" id="slide-2">
                     <div class="profile-new-layout">
-                        <div class="profile-img-container">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Gloria Melo" class="profile-img-main">
-                            <div class="profile-badge">30+ Años de Trayectoria</div>
-                        </div>
-                        
-                        <div class="profile-content">
-                            <span class="role-label">Ponente Principal</span>
-                            <h1 style="font-size: 52px; margin-bottom: 0; line-height: 1.1;">Gloria Melo <span style="font-weight:300; color:var(--text-main)">González</span></h1>
-                            <div class="profile-separator"></div>
-                            
-                            <p style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 10px;">
-                                Economista de la Universidad de Antioquia | Cofundadora & Gerente
-                            </p>
-                            
-                            <p style="font-size: 16px; color: #555; margin-bottom: 25px; line-height: 1.6;">
-                                Desde 1993, Gloria ha demostrado que la rigurosidad administrativa y la sensibilidad cultural no son opuestas, sino complementarias. Su liderazgo ha posicionado a <em>Al Pie de la Letra</em> como un modelo de negocio sostenible y un referente cultural indispensable en Medellín.
-                            </p>
-
-                            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                                <div class="pill"><i class="fa-solid fa-briefcase" style="color:var(--color-primary)"></i> Gerencia Cultural</div>
-                                <div class="pill"><i class="fa-solid fa-chart-line" style="color:var(--color-primary)"></i> Estrategia Comercial</div>
-                                <div class="pill"><i class="fa-solid fa-handshake" style="color:var(--color-primary)"></i> Alianzas Institucionales</div>
-                            </div>
-                        </div>
+                        <div class="profile-img-container"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Gloria Melo" class="profile-img-main"><div class="profile-badge">30+ Años de Trayectoria</div></div>
+                        <div class="profile-content"><span class="role-label">Ponente Principal</span><h1 style="font-size: 52px; margin-bottom: 0; line-height: 1.1;">Gloria Melo <span style="font-weight:300; color:var(--text-main)">González</span></h1><div class="profile-separator"></div><p style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 10px;">Economista de la Universidad de Antioquia | Cofundadora & Gerente</p><p style="font-size: 16px; color: #555; margin-bottom: 25px; line-height: 1.6;">Desde 1993, Gloria ha demostrado que la rigurosidad administrativa y la sensibilidad cultural no son opuestas, sino complementarias.</p><div style="display: flex; gap: 15px; flex-wrap: wrap;"><div class="pill"><i class="fa-solid fa-briefcase" style="color:var(--color-primary)"></i> Gerencia Cultural</div><div class="pill"><i class="fa-solid fa-chart-line" style="color:var(--color-primary)"></i> Estrategia Comercial</div><div class="pill"><i class="fa-solid fa-handshake" style="color:var(--color-primary)"></i> Alianzas Institucionales</div></div></div>
                     </div>
                 </section>
 
                 <!-- SLIDE 3: RELACIONAMIENTO -->
                 <section class="slide" id="slide-3">
                     <h2>Estrategias de Relacionamiento</h2>
-                    <div class="tabs-header">
-                        <div class="tab-btn active" onclick="app.openTab(0)">1. Cercanía</div>
-                        <div class="tab-btn" onclick="app.openTab(1)">2. Eventos</div>
-                        <div class="tab-btn" onclick="app.openTab(2)">3. Convenios</div>
-                    </div>
-
-                    <div class="tab-content active" id="tab-0">
-                        <div class="info-box">
-                            <h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">El Mapa del Tesoro Local</h3>
-                            <p>Conquiste su entorno inmediato (Radio 2km):</p>
-                            <ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;">
-                                <li><strong>Colegios y Jardines:</strong> Ofrezca "La Hora del Cuento".</li>
-                                <li><strong>Empresas Vecinas:</strong> Bonos de regalo corporativos.</li>
-                                <li><strong>Cafés:</strong> Libros en consignación o "Menús Literarios".</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="tab-content" id="tab-1">
-                        <div class="info-box">
-                            <h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">Ferias: Salir de la Estantería</h3>
-                            <ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;">
-                                <li><strong>Grandes Ferias (FILBo):</strong> Posicionamiento de marca.</li>
-                                <li><strong>Ferias Escolares:</strong> Venta directa de plan lector.</li>
-                                <li><strong>Ferias Corporativas:</strong> Semanas de la salud/bienestar.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="tab-content" id="tab-2">
-                        <div class="info-box">
-                            <h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">Alianzas Estratégicas</h3>
-                            <ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;">
-                                <li><strong>Libranzas:</strong> Convenios con fondos de empleados (descuento por nómina).</li>
-                                <li><strong>Cajas de Compensación:</strong> Tarifas diferenciales para afiliados.</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="tabs-header"><div class="tab-btn active" onclick="app.openTab(0)">1. Cercanía</div><div class="tab-btn" onclick="app.openTab(1)">2. Eventos</div><div class="tab-btn" onclick="app.openTab(2)">3. Convenios</div></div>
+                    <div class="tab-content active" id="tab-0"><div class="info-box"><h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">El Mapa del Tesoro Local</h3><p>Conquiste su entorno inmediato (Radio 2km):</p><ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;"><li><strong>Colegios y Jardines:</strong> Ofrezca "La Hora del Cuento".</li><li><strong>Empresas Vecinas:</strong> Bonos de regalo corporativos.</li><li><strong>Cafés:</strong> Libros en consignación.</li></ul></div></div>
+                    <div class="tab-content" id="tab-1"><div class="info-box"><h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">Ferias: Salir de la Estantería</h3><ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;"><li><strong>Grandes Ferias (FILBo):</strong> Posicionamiento.</li><li><strong>Ferias Escolares:</strong> Venta directa.</li><li><strong>Ferias Corporativas:</strong> Bienestar laboral.</li></ul></div></div>
+                    <div class="tab-content" id="tab-2"><div class="info-box"><h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">Alianzas Estratégicas</h3><ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;"><li><strong>Libranzas:</strong> Descuento por nómina.</li><li><strong>Cajas de Compensación:</strong> Tarifas diferenciales.</li></ul></div></div>
                 </section>
 
                 <!-- SLIDE 4: SECTOR PÚBLICO -->
                 <section class="slide" id="slide-4">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-                        <h2>Venta Pública y SECOP II</h2>
-                        <p style="font-size: 13px; color: var(--color-secondary); margin-bottom: 25px;"><i class="fa-solid fa-hand-pointer"></i> Pase el mouse sobre las tarjetas</p>
-                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end;"><h2>Venta Pública y SECOP II</h2><p style="font-size: 13px; color: var(--color-secondary); margin-bottom: 25px;"><i class="fa-solid fa-hand-pointer"></i> Pase el mouse sobre las tarjetas</p></div>
                     <div class="flip-grid">
-                        <!-- Card 1 -->
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-front">
-                                    <i class="fa-solid fa-scale-balanced flip-icon"></i>
-                                    <h3 style="color:var(--text-main)">Marco Legal</h3>
-                                    <p>Las reglas del juego</p>
-                                </div>
-                                <div class="flip-back">
-                                    <h3>Marco Normativo</h3>
-                                    <p style="font-size:13px;">En Colombia, las compras públicas están reguladas para garantizar transparencia.</p>
-                                    <ul style="margin-top: 10px; text-align:left; font-size:13px;">
-                                        <li>Decreto 4170 de 2011</li>
-                                        <li>Decreto 1082 de 2015</li>
-                                        <li>Decreto 874 de 2024</li>
-                                    </ul>
-                                    <button class="btn-white-outline" onclick="app.openModal('m-marco-legal')">
-                                        Ver Normativa Completa
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-front">
-                                    <i class="fa-solid fa-laptop-code flip-icon"></i>
-                                    <h3 style="color:var(--text-main)">SECOP II</h3>
-                                    <p>Plataforma Digital</p>
-                                </div>
-                                <div class="flip-back">
-                                    <h3>Mercado Digital</h3>
-                                    <ul><li>Registro Gratuito.</li><li>Códigos UNSPSC.</li><li>Alertas de Licitación.</li></ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-front">
-                                    <i class="fa-solid fa-file-signature flip-icon"></i>
-                                    <h3 style="color:var(--text-main)">Venta Directa</h3>
-                                    <p>Documentación Vital</p>
-                                </div>
-                                <div class="flip-back">
-                                    <h3>Requisitos Clave</h3>
-                                    <ul class="check-preview">
-                                        <li><i class="fa-solid fa-check"></i> Documentos Legales</li>
-                                        <li><i class="fa-solid fa-check"></i> Antecedentes</li>
-                                        <li><i class="fa-solid fa-check"></i> Parafiscales</li>
-                                    </ul>
-                                    <button class="btn-white-outline" onclick="app.openModal('m-checklist')">
-                                        <i class="fa-solid fa-list-check"></i> Iniciar Validación
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><i class="fa-solid fa-scale-balanced flip-icon"></i><h3 style="color:var(--text-main)">Marco Legal</h3><p>Las reglas del juego</p></div><div class="flip-back"><h3>Marco Normativo</h3><p style="font-size:13px;">En Colombia, las compras públicas están reguladas.</p><ul style="margin-top: 10px; text-align:left; font-size:13px;"><li>Decreto 4170 de 2011</li><li>Decreto 1082 de 2015</li><li>Decreto 874 de 2024</li></ul><button class="btn-white-outline" onclick="app.openModal('m-marco-legal')">Ver Normativa Completa</button></div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><i class="fa-solid fa-laptop-code flip-icon"></i><h3 style="color:var(--text-main)">SECOP II</h3><p>Plataforma Digital</p></div><div class="flip-back"><h3>Mercado Digital</h3><ul><li>Registro Gratuito.</li><li>Códigos UNSPSC.</li><li>Alertas de Licitación.</li></ul></div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><i class="fa-solid fa-file-signature flip-icon"></i><h3 style="color:var(--text-main)">Venta Directa</h3><p>Documentación Vital</p></div><div class="flip-back"><h3>Requisitos Clave</h3><ul class="check-preview"><li><i class="fa-solid fa-check"></i> Documentos Legales</li><li><i class="fa-solid fa-check"></i> Antecedentes</li><li><i class="fa-solid fa-check"></i> Parafiscales</li></ul><button class="btn-white-outline" onclick="app.openModal('m-checklist')"><i class="fa-solid fa-list-check"></i> Iniciar Validación</button></div></div></div>
                     </div>
                 </section>
 
                 <!-- SLIDE 5: RIESGOS -->
                 <section class="slide" id="slide-5">
-                    <h2>¡Cuidado! Riesgos Comunes</h2>
-                    <p>Haga clic en los íconos para ver el detalle:</p>
-                    <div class="error-grid">
-                        <div class="error-btn" onclick="app.openModal('m-flujo')">
-                            <i class="fa-solid fa-money-bill-trend-up"></i>
-                            <span>Flujo de Caja</span>
-                        </div>
-                        <div class="error-btn" onclick="app.openModal('m-stock')">
-                            <i class="fa-solid fa-boxes-stacked"></i>
-                            <span>Stock Irreal</span>
-                        </div>
-                        <div class="error-btn" onclick="app.openModal('m-legal')">
-                            <i class="fa-solid fa-file-contract"></i>
-                            <span>Informalidad</span>
-                        </div>
+                    <h2>¡Cuidado! Riesgos Críticos</h2>
+                    <p>Identifique y mitigue los puntos de fallo más comunes en la venta institucional.</p>
+                    <div class="risk-grid">
+                        <div class="risk-card" onclick="app.openModal('m-flujo')"><div class="risk-icon-wrapper"><i class="fa-solid fa-money-bill-trend-up"></i></div><div class="risk-title">Asfixia Financiera</div><p class="risk-desc">Pagar a 30 días y cobrar a 90 días.</p><div class="risk-action"><i class="fa-solid fa-shield-halved"></i> Ver Solución</div></div>
+                        <div class="risk-card" onclick="app.openModal('m-stock')"><div class="risk-icon-wrapper"><i class="fa-solid fa-boxes-stacked"></i></div><div class="risk-title">Stock Fantasma</div><p class="risk-desc">Ofertar sin verificación física.</p><div class="risk-action"><i class="fa-solid fa-shield-halved"></i> Ver Solución</div></div>
+                        <div class="risk-card" onclick="app.openModal('m-legal')"><div class="risk-icon-wrapper"><i class="fa-solid fa-file-contract"></i></div><div class="risk-title">Bloqueo Legal</div><p class="risk-desc">Mora en seguridad social.</p><div class="risk-action"><i class="fa-solid fa-shield-halved"></i> Ver Solución</div></div>
                     </div>
                 </section>
 
@@ -631,147 +463,34 @@
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
                         <h1 style="font-size: 64px; margin-bottom: 20px;">¡Gracias!</h1>
                         <p style="font-size: 22px; max-width: 700px; font-style: italic; color: var(--text-main);">"La venta institucional es la mejor forma de llevar la cultura a donde la gente trabaja y estudia."</p>
-                        <div style="margin-top: 50px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; width: 500px;">
-                            <h3 style="color:var(--color-primary); margin-bottom: 20px; font-size: 20px;">Contacto & Dudas</h3>
-                            <p style="margin-bottom: 10px;"><i class="fa-solid fa-envelope" style="color:var(--color-secondary); margin-right:10px;"></i> contacto@alpiedelaletra.com</p>
-                            <p><i class="fa-solid fa-location-dot" style="color:var(--color-secondary); margin-right:10px;"></i> Medellín, Colombia</p>
+                        <div style="margin-top: 40px; background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid #eee; width: 700px;">
+                            <h3 style="color:var(--color-primary); margin-bottom: 25px; font-size: 24px;">Conectemos</h3>
+                            <div style="margin-bottom: 30px;">
+                                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Nuestras Sedes</p>
+                                <div style="display: flex; gap: 15px; justify-content: center;">
+                                    <a href="https://maps.app.goo.gl/QNLf6kBvn4TPSuVY7" target="_blank" class="btn-secondary-outline" style="font-size: 14px; padding: 10px 25px;"><i class="fa-solid fa-map-location-dot"></i> Sede Principal</a>
+                                    <a href="https://maps.app.goo.gl/vBX6upiHANNZqPPZ7" target="_blank" class="btn-secondary-outline" style="font-size: 14px; padding: 10px 25px;"><i class="fa-solid fa-landmark"></i> Sede MAMM</a>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 30px; display: flex; gap: 25px; justify-content: center; align-items: center;">
+                                <a href="https://www.alpiedelaletralibreria.com/" target="_blank" class="social-link web" title="Sitio Web"><i class="fa-solid fa-globe"></i></a>
+                                <a href="https://www.instagram.com/alpiedelaletra_libreria/?hl=es-la" target="_blank" class="social-link insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/alpiedelaletra.libreria" target="_blank" class="social-link fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            </div>
+                            <a href="https://api.whatsapp.com/send?phone=573008888828&text=Hola" target="_blank" class="btn-main" style="background-color: #25D366; border: none; text-decoration: none; margin-top: 0; font-size: 16px; padding: 14px 35px;"><i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Escríbenos al WhatsApp</a>
                         </div>
                     </div>
                 </section>
 
             </main>
 
-            <!-- 
-                MODALES
-            -->
-
-            <!-- Modal 1: Checklist Interactivo -->
-            <div class="modal-backdrop" id="m-checklist" onclick="app.closeModal(event)">
-                <div class="modal-content" style="width: 600px;">
-                    <span class="close-modal" onclick="app.forceClose('m-checklist')">&times;</span>
-                    <h2 style="color:var(--color-primary); margin-bottom: 10px;">Validación de Requisitos</h2>
-                    <p style="margin-bottom: 20px; color: #666;">Marque los documentos que ya tiene listos para verificar su estado:</p>
-                    
-                    <!-- Barra de Progreso -->
-                    <div class="progress-container">
-                        <div class="progress-bar" id="checklist-progress">0%</div>
-                    </div>
-
-                    <div class="interactive-checklist">
-                        <div class="check-item" onclick="app.toggleCheck(this)">
-                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
-                            <div class="check-text">
-                                <strong>RUT Actualizado</strong>
-                                <span>Con código CIIU (4761) correcto.</span>
-                            </div>
-                        </div>
-                        <div class="check-item" onclick="app.toggleCheck(this)">
-                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
-                            <div class="check-text">
-                                <strong>Cámara de Comercio</strong>
-                                <span>Vigencia no mayor a 30-90 días.</span>
-                            </div>
-                        </div>
-                        <div class="check-item" onclick="app.toggleCheck(this)">
-                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
-                            <div class="check-text">
-                                <strong>Antecedentes Fiscales (Contraloría)</strong>
-                                <span>Empresa y Representante Legal.</span>
-                            </div>
-                        </div>
-                        <div class="check-item" onclick="app.toggleCheck(this)">
-                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
-                            <div class="check-text">
-                                <strong>Antecedentes Disciplinarios (Procuraduría)</strong>
-                                <span>Vigentes.</span>
-                            </div>
-                        </div>
-                        <div class="check-item" onclick="app.toggleCheck(this)">
-                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
-                            <div class="check-text">
-                                <strong>Antecedentes Judiciales (Policía)</strong>
-                                <span>Verificación de delitos.</span>
-                            </div>
-                        </div>
-                         <div class="check-item" onclick="app.toggleCheck(this)">
-                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
-                            <div class="check-text">
-                                <strong>Seguridad Social (PILA)</strong>
-                                <span>Al día (Salud, Pensión, ARL).</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="checklist-success-msg" style="display:none; margin-top:20px; padding:15px; background:#e3fcef; color:#0f5132; border-radius:10px; text-align:center; font-weight:600;">
-                        <i class="fa-solid fa-circle-check"></i> ¡Excelente! Todo listo para ofertar.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal 2: Marco Legal -->
-            <div class="modal-backdrop" id="m-marco-legal" onclick="app.closeModal(event)">
-                <div class="modal-content" style="width: 800px;">
-                    <span class="close-modal" onclick="app.forceClose('m-marco-legal')">&times;</span>
-                    <h2 style="color:var(--color-primary); margin-bottom: 20px;">Marco Legal de Compras Públicas</h2>
-                    <p style="font-size:15px; color:#555; margin-bottom:20px;">
-                        En Colombia, las compras públicas de libros están reguladas por diversas leyes y decretos que buscan garantizar la transparencia, eficiencia y equidad en la contratación estatal.
-                    </p>
-                    <ul class="legal-list">
-                        <li>
-                            <strong>Decreto 4170 de 2011</strong>
-                            Establece la Agencia Nacional de Contratación Pública (ANCP).
-                            <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44643" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a>
-                        </li>
-                        <li>
-                            <strong>Decreto 1082 de 2015</strong>
-                            Regula el uso de la Circular Externa Única.
-                            <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=62518" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a>
-                        </li>
-                        <li>
-                            <strong>Decreto 92 de 2017</strong>
-                            Establece pautas para acreditar idoneidad.
-                            <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78935" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a>
-                        </li>
-                        <li>
-                            <strong>Decreto 874 de 2024</strong>
-                            Contratación directa con economía popular.
-                            <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=244716" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Modales 3,4,5: Riesgos -->
-            <div class="modal-backdrop" id="m-flujo" onclick="app.closeModal(event)">
-                <div class="modal-content">
-                    <span class="close-modal" onclick="app.forceClose('m-flujo')">&times;</span>
-                    <h2 style="color:var(--color-primary); margin-bottom: 20px;">Peligro Financiero</h2>
-                    <p>Las instituciones públicas pagan a 60 o 90 días. Si pagas a tus proveedores a 30 días, te quedarás sin liquidez. Negocia plazos antes de ofertar.</p>
-                </div>
-            </div>
-            <div class="modal-backdrop" id="m-stock" onclick="app.closeModal(event)">
-                <div class="modal-content">
-                    <span class="close-modal" onclick="app.forceClose('m-stock')">&times;</span>
-                    <h2 style="color:var(--color-primary); margin-bottom: 20px;">Stock Fantasma</h2>
-                    <p>Nunca ofertes una cantidad masiva basándote solo en el sistema. Verifica físicamente o pide carta de compromiso a la editorial.</p>
-                </div>
-            </div>
-            <div class="modal-backdrop" id="m-legal" onclick="app.closeModal(event)">
-                <div class="modal-content">
-                    <span class="close-modal" onclick="app.forceClose('m-legal')">&times;</span>
-                    <h2 style="color:var(--color-primary); margin-bottom: 20px;">Informalidad</h2>
-                    <p>Un solo día de retraso en la Seguridad Social o un RUT desactualizado bloquean el pago de una factura estatal inmediatamente.</p>
-                </div>
-            </div>
-
-            <!-- Modal 6: Historia -->
-            <div class="modal-backdrop" id="m-historia" onclick="app.closeModal(event)">
-                <div class="modal-content" style="width: 90%; max-width: 1100px;">
-                    <span class="close-modal" onclick="app.forceClose('m-historia')">&times;</span>
-                    <h2 style="color:var(--color-primary); margin-bottom: 40px; text-align: center;">Línea de Tiempo: Nuestra Historia</h2>
-                    <div id="timeline-container" class="horizontal-timeline-container"></div>
-                </div>
-            </div>
+            <!-- MODALES -->
+            <div class="modal-backdrop" id="m-marco-legal" onclick="app.closeModal(event)"><div class="modal-content" style="width: 800px;"><span class="close-modal" onclick="app.forceClose('m-marco-legal')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Marco Legal de Compras Públicas</h2><p style="font-size:15px; color:#555; margin-bottom:20px;">En Colombia, las compras públicas de libros están reguladas por diversas leyes y decretos.</p><ul class="legal-list"><li><strong>Decreto 4170 de 2011</strong>Establece la Agencia Nacional de Contratación Pública (ANCP).<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44643" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li><li><strong>Decreto 1082 de 2015</strong>Regula el uso de la Circular Externa Única.<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=62518" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li><li><strong>Decreto 92 de 2017</strong>Establece pautas para acreditar idoneidad.<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78935" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li><li><strong>Decreto 874 de 2024</strong>Contratación directa con economía popular.<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=244716" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li></ul></div></div>
+            <div class="modal-backdrop" id="m-checklist" onclick="app.closeModal(event)"><div class="modal-content" style="width: 600px;"><span class="close-modal" onclick="app.forceClose('m-checklist')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 10px;">Validación de Requisitos</h2><p style="margin-bottom: 20px; color: #666;">Marque los documentos que ya tiene listos para verificar su estado:</p><div class="progress-container"><div class="progress-bar" id="checklist-progress">0%</div></div><div class="interactive-checklist"><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>RUT Actualizado</strong><span>Con código CIIU (4761) correcto.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Cámara de Comercio</strong><span>Vigencia no mayor a 30-90 días.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Antecedentes Fiscales</strong><span>Empresa y Representante Legal.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Antecedentes Disciplinarios</strong><span>Vigentes.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Antecedentes Judiciales</strong><span>Verificación de delitos.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Seguridad Social (PILA)</strong><span>Al día.</span></div></div></div><div id="checklist-success-msg" style="display:none; margin-top:20px; padding:15px; background:#e3fcef; color:#0f5132; border-radius:10px; text-align:center; font-weight:600;"><i class="fa-solid fa-circle-check"></i> ¡Excelente! Todo listo para ofertar.</div></div></div>
+            <div class="modal-backdrop" id="m-flujo" onclick="app.closeModal(event)"><div class="modal-content"><span class="close-modal" onclick="app.forceClose('m-flujo')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Peligro Financiero</h2><p>Las instituciones públicas pagan a 60 o 90 días. Si pagas a tus proveedores a 30 días, te quedarás sin liquidez. Negocia plazos antes de ofertar.</p></div></div>
+            <div class="modal-backdrop" id="m-stock" onclick="app.closeModal(event)"><div class="modal-content"><span class="close-modal" onclick="app.forceClose('m-stock')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Stock Fantasma</h2><p>Nunca ofertes una cantidad masiva basándote solo en el sistema. Verifica físicamente o pide carta de compromiso a la editorial.</p></div></div>
+            <div class="modal-backdrop" id="m-legal" onclick="app.closeModal(event)"><div class="modal-content"><span class="close-modal" onclick="app.forceClose('m-legal')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Informalidad</h2><p>Un solo día de retraso en la Seguridad Social o un RUT desactualizado bloquean el pago de una factura estatal inmediatamente.</p></div></div>
+            <div class="modal-backdrop" id="m-historia" onclick="app.closeModal(event)"><div class="modal-content" style="width: 90%; max-width: 1100px;"><span class="close-modal" onclick="app.forceClose('m-historia')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 40px; text-align: center;">Línea de Tiempo: Nuestra Historia</h2><div id="timeline-container" class="horizontal-timeline-container"></div></div></div>
 
         </div>
     </div>
@@ -779,17 +498,16 @@
     <script>
         /**
          * ==========================================
-         * APP LOGIC (JS)
-         * Patrón de Módulo para encapsular funcionalidad.
+         * LÓGICA DE LA APLICACIÓN (JS)
          * ==========================================
          */
-        const app = (function() {
+        window.app = (function() {
             
-            // DATOS DE LA HISTORIA (Modelo)
+            // DATOS DE LA HISTORIA
             const timelineData = [
                 { year: "1993", title: "El Origen", desc: "La familia Melo González funda la librería tras negociar 'La mesa del silencio'. Apertura: 6 de Diciembre." },
                 { year: "2015", title: "Sede MAMM", desc: "Expansión clave en el Museo de Arte Moderno de Medellín. Crecimiento basado en confianza editorial." },
-                { year: "2023", title: "30 Años", desc: "Celebración de tres décadas. Consolidación de clubes de lectura ('El Murito') y comunidad." },
+                { year: "2023", title: "30 Años", desc: "Celebración de tres décadas como referente cultural. Consolidación de clubes de lectura ('El Murito')." },
                 { year: "2025", title: "IA & Vigencia", desc: "Reto actual: Mantener la esencia humana del librero frente a la revolución de la IA." }
             ];
 
@@ -799,19 +517,11 @@
                 if(!container) return;
                 container.innerHTML = '';
                 timelineData.forEach(item => {
-                    container.innerHTML += `
-                        <div class="h-timeline-item">
-                            <div class="h-timeline-year">${item.year}</div>
-                            <div class="h-timeline-content">
-                                <strong>${item.title}</strong>
-                                <p>${item.desc}</p>
-                            </div>
-                        </div>
-                    `;
+                    container.innerHTML += `<div class="h-timeline-item"><div class="h-timeline-year">${item.year}</div><div class="h-timeline-content"><strong>${item.title}</strong><p>${item.desc}</p></div></div>`;
                 });
             }
 
-            // Ajusta la escala de la presentación para que quepa en cualquier pantalla
+            // Ajusta la escala de la presentación
             function fitToScreen() {
                 const wrapper = document.getElementById('scale-wrapper');
                 const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.95;
@@ -821,11 +531,7 @@
             // API Pública
             return {
                 init: function() {
-                    window.addEventListener('load', () => {
-                        fitToScreen();
-                        this.goToSlide(0);
-                        renderTimeline();
-                    });
+                    window.addEventListener('load', () => { fitToScreen(); this.goToSlide(0); renderTimeline(); });
                     window.addEventListener('resize', fitToScreen);
                 },
 
@@ -835,7 +541,7 @@
                     
                     const targetSlide = document.getElementById('slide-' + index);
                     const targetNav = document.querySelectorAll('.nav-item')[index];
-                    
+
                     if (targetSlide) targetSlide.classList.add('active');
                     if (targetNav) targetNav.classList.add('active');
                     
@@ -845,13 +551,17 @@
                 openTab: function(index) {
                     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                    
-                    document.querySelectorAll('.tab-content')[index].classList.add('active');
-                    document.querySelectorAll('.tab-btn')[index].classList.add('active');
+
+                    const content = document.querySelectorAll('.tab-content')[index];
+                    const btn = document.querySelectorAll('.tab-btn')[index];
+
+                    if(content) content.classList.add('active');
+                    if(btn) btn.classList.add('active');
                 },
 
                 openModal: function(id) {
-                    document.getElementById(id).classList.add('visible');
+                    const el = document.getElementById(id);
+                    if(el) el.classList.add('visible');
                 },
                 
                 closeModal: function(e) {
@@ -861,10 +571,10 @@
                 },
                 
                 forceClose: function(id) {
-                    document.getElementById(id).classList.remove('visible');
+                    const el = document.getElementById(id);
+                    if(el) el.classList.remove('visible');
                 },
 
-                // Lógica del Checklist Gamificado
                 toggleCheck: function(element) {
                     element.classList.toggle('checked');
                     const total = document.querySelectorAll('.check-item').length;
@@ -872,18 +582,28 @@
                     const percentage = Math.round((checked / total) * 100);
                     
                     const bar = document.getElementById('checklist-progress');
-                    bar.style.width = percentage + '%';
-                    bar.innerText = percentage + '%';
+                    if(bar) {
+                        bar.style.width = percentage + '%';
+                        bar.innerText = percentage + '%';
+                    }
                     
                     const successMsg = document.getElementById('checklist-success-msg');
-                    successMsg.style.display = (percentage === 100) ? 'block' : 'none';
+                    if(successMsg) {
+                        successMsg.style.display = (percentage === 100) ? 'block' : 'none';
+                    }
                 }
             };
 
         })();
 
-        // Iniciar App
-        app.init();
+        // Arranque robusto
+        window.addEventListener('load', () => window.app.init());
+        document.addEventListener('DOMContentLoaded', () => window.app.init());
+        window.addEventListener('resize', () => {
+            const wrapper = document.getElementById('scale-wrapper');
+            const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.95;
+            wrapper.style.transform = `scale(${scale})`;
+        });
 
     </script>
 </body>
