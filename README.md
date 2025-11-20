@@ -44,8 +44,7 @@ Opción 1: Abrir localmente
 Opción 2: GitHub Pages
 1. Sube los archivos a un repositorio.
 2. En Settings → Pages activa la rama main.
-3. Accede a la URL generada:
-   https://tuusuario.github.io/al-pie-de-la-letra/
+3. Accede a la URL generada: https://github.com/AnaMar-8a/Gloriosa/blob/main/index.html
 
 ------------------------------------------------------------
 LÓGICA JS PRINCIPAL
