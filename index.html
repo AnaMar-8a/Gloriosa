@@ -16,7 +16,8 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Más Allá de la Estantería">
     <meta property="og:description" content="Transformando librerías en aliados culturales del sector público.">
-    <meta property="og:image" content="img/libreria1.jpg">
+    <!-- IMAGEN PARA COMPARTIR EN REDES (Desde tu Git) -->
+    <meta property="og:image" content="https://raw.githubusercontent.com/AnaMar-8a/Gloriosa/main/images/libreria1.jpg">
 
     <!-- =========================================
          FUENTES Y ESTILOS
@@ -306,7 +307,8 @@
         .hero-text { flex: 1; z-index: 2; animation: slideInLeft 0.8s ease-out; }
         .hero-visual { 
             flex: 1; height: 85%; 
-            background: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1000') center/cover; 
+            /* Imagen de fondo para el Hero (Se podría usar una de las de GitHub también si se desea) */
+            background: url('https://raw.githubusercontent.com/AnaMar-8a/Gloriosa/main/images/libreria1.jpg') center/cover; 
             border-radius: 24px; box-shadow: -15px 15px 0 var(--color-primary-light);
             position: relative; overflow: hidden; animation: fadeInScale 1s ease-out;
         }
@@ -532,7 +534,7 @@
                     </div>
                 </section>
 
-                <!-- SLIDE 1: IDENTIDAD -->
+                <!-- SLIDE 1: IDENTIDAD (CON FOTOS DE GITHUB) -->
                 <section class="slide" id="slide-1">
                     <h2>Nuestra Identidad</h2>
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items:center; height:80%;">
@@ -554,9 +556,16 @@
                             </button>
                         </div>
                         <div style="position:relative; height:100%; width:100%;">
+                             <!-- COLLAGE DE FOTOS DESDE GITHUB -->
                              <div class="lib-collage">
-                                 <img src="img/libreria1.jpg" class="lib-img-1" alt="Fachada de Librería" loading="lazy">
-                                 <img src="img/libreria2.jpg" class="lib-img-2" alt="Interior de Librería" loading="lazy">
+                                 <img src="https://raw.githubusercontent.com/AnaMar-8a/Gloriosa/main/images/libreria1.jpg" 
+                                      class="lib-img-1" 
+                                      alt="Fachada o plano general de Al Pie de la Letra" 
+                                      loading="lazy">
+                                 <img src="https://raw.githubusercontent.com/AnaMar-8a/Gloriosa/main/images/libreria2.jpg" 
+                                      class="lib-img-2" 
+                                      alt="Detalle interior de la librería" 
+                                      loading="lazy">
                              </div>
                         </div>
                     </div>
@@ -567,7 +576,9 @@
                     <h2>Liderazgo Estratégico</h2>
                     <div style="display:flex; align-items:center; justify-content:center; height:80%;">
                         <div class="profile-card">
-                            <img src="img/gloria.jpg" alt="Gloria Melo González" class="profile-img" loading="lazy">
+                            <!-- FOTO DE GLORIA DESDE GITHUB (OJO: 'golria.jpg') -->
+                            <img src="https://raw.githubusercontent.com/AnaMar-8a/Gloriosa/main/images/golria.jpg" 
+                                 alt="Gloria Melo González" class="profile-img" loading="lazy">
                             <div class="profile-data">
                                 <span style="color:var(--color-primary); font-weight:700; font-size:12px; letter-spacing:1px;">PONENTE PRINCIPAL</span>
                                 <h3 style="font-family:'Playfair Display'; font-size:38px; margin:5px 0 10px;">Gloria Melo</h3>
@@ -826,17 +837,15 @@
                     <p>Automatice el pago de seguridad social. Un día de retraso congela sus cuentas de cobro.</p>
                 </div>
             </div>
-
-            <!-- Modal Marco Legal Completo -->
             <div class="modal-backdrop" id="m-marco-legal" onclick="app.closeModal(event)">
                 <div class="modal-content" style="max-width:600px;">
                     <div class="close-modal" onclick="app.forceClose('m-marco-legal')">&times;</div>
-                    <h2 style="color:var(--color-secondary);">Marco Normativo Completo</h2>
-                    <ul style="margin-top:20px; line-height:2; font-size:15px;">
-                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77653" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Decreto 1082 de 2015</a> - Reglamentario del Sector Administrativo de Planeación Nacional.</li>
-                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=244716" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Decreto 874 de 2024</a> - Contratación directa con economía popular y comunitaria.</li>
-                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Ley 80 de 1993</a> - Estatuto General de Contratación de la Administración Pública.</li>
-                        <li><a href="https://www.colombiacompra.gov.co/wp-content/uploads/2025/03/manual_de_contratacion_compressed.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Guía Colombia Compra Eficiente</a> - Manuales oficiales.</li>
+                    <h2 style="color:var(--color-secondary);">Marco Normativo</h2>
+                    <ul style="margin-top:20px; line-height:2;">
+                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77653" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);">Decreto 1082 de 2015</a></li>
+                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=244716" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);">Decreto 874 de 2024</a></li>
+                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);">Ley 80 de 1993</a></li>
+                        <li><a href="https://www.colombiacompra.gov.co/wp-content/uploads/2025/03/manual_de_contratacion_compressed.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);">Guía Colombia Compra Eficiente</a></li>
                     </ul>
                 </div>
             </div>
