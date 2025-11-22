@@ -5,70 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <!-- SEO & Metadatos -->
+    <!-- =========================================
+         METADATOS SEO & SOCIAL
+         ========================================= -->
     <title>Al Pie de la Letra - Estrategia Institucional</title>
-    <meta name="description" content="Estrategias de Venta Institucional y Compra Pública para el sector librero. Presentación oficial de Al Pie de la Letra.">
+    <meta name="description" content="Estrategias de Venta Institucional y Compra Pública. Presentación oficial de Al Pie de la Letra.">
     <meta name="author" content="Al Pie de la Letra">
     <meta name="theme-color" content="#C62828">
 
-    <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Más Allá de la Estantería - Al Pie de la Letra">
-    <meta property="og:description" content="Guía estratégica para transformar librerías en aliados culturales del sector público.">
-    <!-- Asegúrate de tener esta imagen si quieres que salga al compartir -->
+    <meta property="og:title" content="Más Allá de la Estantería">
+    <meta property="og:description" content="Transformando librerías en aliados culturales del sector público.">
     <meta property="og:image" content="img/libreria1.jpg">
 
-    <!-- Optimización de Carga (Preconnect) -->
+    <!-- =========================================
+         FUENTES Y ESTILOS
+         ========================================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Fuentes y Estilos Externos -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Librerías JS (Defer para no bloquear renderizado) -->
+    <!-- UTILIDADES JS (Carga diferida) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
     <style>
         /* =========================================
-           1. DESIGN TOKENS (Variables CSS)
+           1. SISTEMA DE DISEÑO (VARIABLES)
            ========================================= */
         :root {
-            /* Paleta de Marca */
-            --color-primary: #C62828;
-            --color-primary-light: #FFEBEE;
-            --color-secondary: #0277BD;
+            /* Identidad de Marca */
+            --color-primary: #C62828;       /* Rojo Institucional */
+            --color-primary-light: #FFEBEE; 
+            --color-secondary: #0277BD;     /* Azul Corporativo */
             --color-secondary-dark: #01579B;
-            --color-accent: #FFD600;
-            --color-success: #2E7D32;
+            --color-success: #2E7D32;       /* Verde Éxito */
             
-            /* Superficies y Texto */
+            /* Interfaz */
             --bg-app: #ECEFF1;
             --bg-card: #ffffff;
             --text-main: #263238;
             --text-muted: #546E7A;
-            --text-inverse: #ffffff;
-
-            /* UI Kit */
+            
+            /* Elevación y Bordes */
             --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
             --shadow-lg: 0 25px 50px rgba(2, 119, 189, 0.15);
             --radius-lg: 24px;
             --radius-md: 12px;
             
-            /* Animaciones */
-            --anim-fast: 0.2s ease;
+            /* Animación */
             --anim-smooth: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         /* =========================================
-           2. RESET & BASE
+           2. BASE Y ESTRUCTURA
            ========================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-font-smoothing: antialiased; }
         
-        /* Accesibilidad: Focus visible para teclado */
-        *:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
-
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-app);
@@ -81,9 +75,7 @@
             color: var(--text-main);
         }
 
-        /* =========================================
-           3. LAYOUT PRINCIPAL (App Container)
-           ========================================= */
+        /* Contenedor Principal con Aspect Ratio Fijo */
         #scale-wrapper {
             width: 1280px;
             height: 720px;
@@ -104,7 +96,9 @@
             position: relative;
         }
 
-        /* Sidebar - Aumentado z-index para asegurar clics */
+        /* =========================================
+           3. BARRA LATERAL (SIDEBAR)
+           ========================================= */
         .sidebar {
             width: 260px;
             background: #F9FAFB;
@@ -112,25 +106,11 @@
             display: flex;
             flex-direction: column;
             padding: 35px 0 0 0;
-            z-index: 100; /* Asegura que esté por encima de cualquier contenido */
+            z-index: 100;
+            position: relative;
             flex-shrink: 0;
-            position: relative;
         }
 
-        /* Main Content Area */
-        .main-content {
-            flex: 1;
-            position: relative;
-            background-color: #fff;
-            background-image: radial-gradient(#ECEFF1 1.5px, transparent 1.5px);
-            background-size: 24px 24px;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        /* =========================================
-           4. COMPONENTES DE NAVEGACIÓN
-           ========================================= */
         .brand {
             padding: 0 25px;
             margin-bottom: 20px;
@@ -166,21 +146,12 @@
             scrollbar-width: thin;
             scrollbar-color: #ddd transparent;
         }
-        .nav-menu::-webkit-scrollbar { width: 4px; }
-        .nav-menu::-webkit-scrollbar-thumb { background-color: #ddd; border-radius: 4px; }
 
         .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 14px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all var(--anim-fast);
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 14px;
-            position: relative;
-            overflow: hidden;
+            display: flex; align-items: center;
+            padding: 14px 20px; border-radius: 10px;
+            cursor: pointer; transition: all 0.2s ease;
+            color: var(--text-muted); font-weight: 500; font-size: 14px;
             user-select: none;
         }
 
@@ -192,7 +163,7 @@
 
         .nav-item.active {
             background-color: var(--color-primary);
-            color: var(--text-inverse);
+            color: #fff;
             box-shadow: 0 4px 12px rgba(198, 40, 40, 0.25);
             font-weight: 600;
         }
@@ -213,36 +184,22 @@
             padding: 20px 15px;
             border-top: 1px solid rgba(0,0,0,0.05);
             background: #fdfdfd;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            display: flex; flex-direction: column; gap: 10px;
         }
 
         .organizer-label {
-            font-size: 10px;
-            text-transform: uppercase;
-            color: #999;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            display: block;
-            font-weight: 700;
-            padding-left: 5px;
+            font-size: 10px; text-transform: uppercase; color: #999;
+            letter-spacing: 1px; margin-bottom: 5px; display: block;
+            font-weight: 700; padding-left: 5px;
         }
 
         .footer-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.3s ease;
-            background: white;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            position: relative;
-            z-index: 101; /* Asegurar clickabilidad */
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--text-main);
+            transition: all 0.3s ease; background: white;
+            padding: 12px; border-radius: 10px;
+            border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            position: relative; z-index: 101;
         }
 
         .footer-link:hover {
@@ -251,48 +208,37 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
-        .footer-icon {
-            font-size: 22px;
-            width: 24px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .footer-text {
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        
-        .footer-subtext {
-            font-weight: 400; 
-            font-size: 10px; 
-            color: #777;
-            display: block;
-        }
+        .footer-icon { font-size: 22px; width: 24px; text-align: center; flex-shrink: 0; }
+        .footer-text { font-size: 12px; font-weight: 700; line-height: 1.3; }
+        .footer-subtext { font-weight: 400; font-size: 10px; color: #777; display: block; }
 
         .controls-hint {
-            padding: 10px 0;
-            font-size: 10px;
-            color: #bbb;
-            text-align: center;
-            border-top: 1px solid #f0f0f0;
-            margin-top: 5px;
+            padding: 10px 0; font-size: 10px; color: #bbb;
+            text-align: center; border-top: 1px solid #f0f0f0; margin-top: 5px;
         }
         .keyboard-icon {
             border: 1px solid #ddd; padding: 1px 5px; border-radius: 4px; font-family: monospace; margin: 0 2px;
         }
 
         /* =========================================
-           5. SLIDES & TRANSICIONES
+           4. ZONA DE CONTENIDO (SLIDES)
            ========================================= */
+        .main-content {
+            flex: 1; position: relative;
+            background-color: #fff;
+            background-image: radial-gradient(#ECEFF1 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            overflow: hidden; z-index: 1;
+        }
+        
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             padding: 45px 65px; opacity: 0; visibility: hidden;
             transform: translateY(20px) scale(0.98);
             transition: all var(--anim-smooth);
             z-index: 1; display: flex; flex-direction: column;
-            pointer-events: none; 
+            pointer-events: none;
+            will-change: transform, opacity; /* Optimización GPU */
         }
 
         .slide.active {
@@ -301,33 +247,26 @@
             z-index: 10; pointer-events: auto;
         }
 
-        /* Tipografía */
+        /* Tipografía Base */
         h1 { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--color-primary); margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.1; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text-main); margin-bottom: 25px; letter-spacing: -0.5px; position: relative; display: inline-block; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text-main); margin-bottom: 25px; position: relative; display: inline-block; }
         h2::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 40px; height: 3px; background: var(--color-secondary); border-radius: 2px; }
         p { font-size: 16px; line-height: 1.7; color: var(--text-muted); margin-bottom: 20px; max-width: 95%; }
 
         /* =========================================
-           6. COMPONENTES VISUALES
+           5. COMPONENTES UI
            ========================================= */
         
         /* Botones */
-        .btn-main, .btn-secondary-outline, .btn-white-outline {
-            font-family: inherit;
-            cursor: pointer;
-            transition: all var(--anim-fast);
-            display: inline-flex; align-items: center; gap: 8px;
-            text-decoration: none;
-            font-weight: 600;
+        .btn-main, .btn-secondary-outline, .btn-white-outline, .legal-badge {
+            cursor: pointer; text-decoration: none; transition: all 0.2s ease;
+            display: inline-flex; align-items: center; gap: 8px; font-weight: 600;
         }
 
         .btn-main {
             background: linear-gradient(135deg, var(--color-primary), #B71C1C);
-            color: var(--text-inverse);
-            padding: 14px 36px; border-radius: 50px; border: none;
-            font-size: 16px;
-            box-shadow: 0 8px 20px rgba(198, 40, 40, 0.25);
-            position: relative; overflow: hidden;
+            color: #fff; padding: 14px 36px; border-radius: 50px; border: none;
+            font-size: 16px; box-shadow: 0 8px 20px rgba(198, 40, 40, 0.25);
         }
         .btn-main:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(198, 40, 40, 0.35); }
         
@@ -345,90 +284,99 @@
         }
         .btn-white-outline:hover { background: white; color: var(--color-secondary); }
 
-        /* Hero Layout */
+        /* Badges Legales (Flip Card) */
+        .legal-badge {
+            display: block; width: 100%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 10px 12px; border-radius: 10px;
+            color: white; margin-bottom: 8px; text-align: left;
+        }
+        .legal-badge:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateX(3px);
+            border-color: rgba(255,255,255,0.6);
+        }
+        .legal-badge strong { font-size: 13px; display: block; margin-bottom: 2px; }
+        .legal-badge span { font-size: 11px; color: rgba(255,255,255,0.85); display: block; font-weight: 400; }
+        .legal-badge i { float: right; font-size: 10px; opacity: 0.7; margin-top: 3px; }
+
+        /* Hero (Slide 0) */
         .hero-wrapper { display: flex; align-items: center; height: 100%; gap: 50px; }
         .hero-text { flex: 1; z-index: 2; animation: slideInLeft 0.8s ease-out; }
         .hero-visual { 
             flex: 1; height: 85%; 
             background: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1000') center/cover; 
-            border-radius: 24px; 
-            box-shadow: -15px 15px 0 var(--color-primary-light);
-            position: relative; overflow: hidden;
-            animation: fadeInScale 1s ease-out;
+            border-radius: 24px; box-shadow: -15px 15px 0 var(--color-primary-light);
+            position: relative; overflow: hidden; animation: fadeInScale 1s ease-out;
         }
         .hero-visual::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, rgba(0,0,0,0.3), transparent); }
 
-        /* Video Fallback UI */
+        /* Collage (Slide 1) */
+        .lib-collage { position: relative; width: 100%; height: 100%; }
+        .lib-img-1 {
+            position: absolute; top: 0; right: 0; width: 85%; height: 85%;
+            object-fit: cover; border-radius: 20px; box-shadow: var(--shadow-md);
+            z-index: 1; transition: transform 0.4s;
+        }
+        .lib-img-2 {
+            position: absolute; bottom: 20px; left: 0; width: 55%; height: 55%;
+            object-fit: cover; border-radius: 20px; border: 6px solid white;
+            box-shadow: var(--shadow-lg); z-index: 2; transition: transform 0.4s;
+        }
+        .lib-collage:hover .lib-img-1 { transform: translateX(5px); }
+        .lib-collage:hover .lib-img-2 { transform: scale(1.05); }
+
+        /* Tarjetas Flip (Sector Público) */
+        .flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; height: 360px; perspective: 1000px; }
+        .flip-card { width: 100%; height: 100%; cursor: pointer; }
+        .flip-card-inner { 
+            position: relative; width: 100%; height: 100%; text-align: center; 
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            transform-style: preserve-3d; box-shadow: var(--shadow-sm); border-radius: 20px;
+            will-change: transform; 
+        }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-front, .flip-back { 
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
+            border-radius: 20px; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 30px; 
+        }
+        .flip-front { background-color: white; border: 1px solid #eee; border-bottom: 5px solid var(--color-primary); }
+        .flip-back { 
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark)); 
+            color: white; transform: rotateY(180deg); text-align: left; align-items: flex-start;
+        }
+
+        /* Video Fallback Card */
         .video-fallback-card {
-            width: 100%; height: 100%;
-            border-radius: 12px; overflow: hidden;
+            width: 100%; height: 100%; border-radius: 12px; overflow: hidden;
             box-shadow: var(--shadow-sm); position: relative;
-            background-size: cover; background-position: center; background-repeat: no-repeat;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            cursor: pointer; border: 2px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s;
+            background-size: cover; background-position: center;
+            display: flex; justify-content: center; align-items: center;
+            border: 2px solid rgba(255,255,255,0.2); transition: transform 0.3s;
         }
         .video-fallback-card::before {
             content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
             background: rgba(0,0,0,0.4); transition: background 0.3s;
         }
         .video-fallback-card:hover::before { background: rgba(0,0,0,0.2); }
-        
         .play-button {
-            width: 60px; height: 60px;
-            background: rgba(255,255,255,0.9); border-radius: 50%;
+            width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: #FF0000; font-size: 20px; z-index: 2;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            color: #FF0000; font-size: 20px; z-index: 2; box-shadow: 0 0 20px rgba(0,0,0,0.3);
             transition: transform 0.3s, background 0.3s;
         }
         .video-fallback-card:hover .play-button { transform: scale(1.1); background: white; }
 
-        /* ESTILO PARA EL COLLAGE DE FOTOS (DIAPOSITIVA 1) */
-        .lib-collage {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        .lib-img-1 {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 85%;
-            height: 85%;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: var(--shadow-md);
-            z-index: 1;
-            transition: transform 0.4s;
-        }
-        .lib-img-2 {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 55%;
-            height: 55%;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 6px solid white;
-            box-shadow: var(--shadow-lg);
-            z-index: 2;
-            transition: transform 0.4s;
-        }
-        /* Efecto hover sutil en el collage */
-        .lib-collage:hover .lib-img-1 { transform: translateX(5px); }
-        .lib-collage:hover .lib-img-2 { transform: scale(1.05); }
-
-
-        /* Relations Cards */
+        /* Relaciones (Accordion) */
         .relations-container { display: flex; width: 100%; height: 400px; gap: 15px; margin-top: 20px; }
         .rel-card {
-            position: relative; height: 100%; flex: 1;
-            border-radius: 20px; overflow: hidden; cursor: pointer;
-            transition: flex 0.5s ease-in-out;
+            position: relative; height: 100%; flex: 1; border-radius: 20px; overflow: hidden;
+            cursor: pointer; transition: flex 0.5s ease-in-out;
             display: flex; flex-direction: column; justify-content: flex-end;
             padding: 25px; background-size: cover; background-position: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-sm); will-change: flex;
         }
         .rel-card:nth-child(1) { background-image: linear-gradient(to top, rgba(2,119,189,0.9), rgba(2,119,189,0.4)), url('https://images.unsplash.com/photo-1577011635230-9457b5255d56?auto=format&fit=crop&q=80&w=600'); } 
         .rel-card:nth-child(2) { background-image: linear-gradient(to top, rgba(198,40,40,0.9), rgba(198,40,40,0.4)), url('https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&q=80&w=600'); } 
@@ -439,7 +387,7 @@
         .rel-desc { color: rgba(255,255,255,0.9); font-size: 14px; opacity: 0; transition: opacity 0.3s 0.1s; transform: translateY(10px); }
         .rel-card:hover .rel-desc { opacity: 1; transform: translateY(0); }
 
-        /* Profile Card */
+        /* Profile */
         .profile-card {
             background: white; border-radius: 20px; 
             box-shadow: var(--shadow-md); padding: 0; 
@@ -453,28 +401,6 @@
             padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
             display: flex; align-items: center; gap: 6px;
         }
-
-        /* Flip Cards */
-        .flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; height: 360px; perspective: 1000px; }
-        .flip-card { width: 100%; height: 100%; cursor: pointer; }
-        .flip-card-inner { 
-            position: relative; width: 100%; height: 100%; text-align: center; 
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            transform-style: preserve-3d; box-shadow: var(--shadow-sm); border-radius: 20px; 
-        }
-        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-        .flip-front, .flip-back { 
-            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
-            border-radius: 20px; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; padding: 30px; 
-        }
-        .flip-front { background-color: white; border: 1px solid #eee; border-bottom: 5px solid var(--color-primary); }
-        .flip-back { 
-            background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark)); 
-            color: white; transform: rotateY(180deg); text-align: left; align-items: flex-start;
-        }
-        .flip-back h3, .flip-back p { color: white; }
-        .flip-back ul { padding-left: 20px; text-align: left; margin-top: 10px; font-size: 14px; line-height: 1.6; }
 
         /* Risk Cards */
         .risk-grid { display: flex; gap: 25px; justify-content: center; margin-top: 20px; }
@@ -494,7 +420,7 @@
         .risk-card:hover .icon-box { background: var(--color-primary); color: white; transform: rotate(15deg); }
 
         /* =========================================
-           7. MODALES & CHECKLIST
+           6. MODALES & INTERACCIÓN
            ========================================= */
         .modal-backdrop { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
@@ -507,7 +433,7 @@
             background: white; width: 90%; max-width: 900px; padding: 40px; 
             border-radius: 20px; position: relative; transform: scale(0.9); 
             transition: transform 0.3s; box-shadow: var(--shadow-lg);
-            max-height: 90vh; overflow-y: auto;
+            max-height: 90vh; overflow-y: auto; will-change: transform;
         }
         .modal-backdrop.visible .modal-content { transform: scale(1); }
         .close-modal { 
@@ -530,7 +456,7 @@
         }
         .check-row.completed .check-box-custom { background: var(--color-success); border-color: var(--color-success); }
 
-        /* Animaciones */
+        /* Animaciones CSS */
         @keyframes slideInLeft { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
         @keyframes fadeInScale { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
 
@@ -563,7 +489,7 @@
                 <div class="sidebar-footer">
                     <span class="organizer-label">Organiza & Avala:</span>
                     
-                    <!-- 1. Al Pie de la Letra (Principal) -->
+                    <!-- 1. Al Pie de la Letra -->
                     <a href="https://www.alpiedelaletralibreria.com/" target="_blank" rel="noopener noreferrer" class="footer-link" title="Visitar Sitio Web">
                         <i class="fa-solid fa-book-open footer-icon" style="color: var(--color-primary);"></i>
                         <div class="footer-text">
@@ -572,7 +498,7 @@
                         </div>
                     </a>
 
-                    <!-- 2. ACLI (Aval) -->
+                    <!-- 2. ACLI -->
                     <a href="https://www.instagram.com/librerosacli/?hl=es" target="_blank" rel="noopener noreferrer" class="footer-link" title="Ir al Instagram de ACLI">
                         <i class="fa-brands fa-instagram footer-icon" style="color: #E1306C;"></i>
                         <div class="footer-text">
@@ -606,7 +532,7 @@
                     </div>
                 </section>
 
-                <!-- SLIDE 1: IDENTIDAD (CON COLLAGE DE FOTOS) -->
+                <!-- SLIDE 1: IDENTIDAD -->
                 <section class="slide" id="slide-1">
                     <h2>Nuestra Identidad</h2>
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items:center; height:80%;">
@@ -628,16 +554,9 @@
                             </button>
                         </div>
                         <div style="position:relative; height:100%; width:100%;">
-                             <!-- COLLAGE DE FOTOS -->
                              <div class="lib-collage">
-                                 <img src="img/libreria1.jpg" 
-                                      class="lib-img-1" 
-                                      alt="Fachada o plano general de Al Pie de la Letra" 
-                                      loading="lazy">
-                                 <img src="img/libreria2.jpg" 
-                                      class="lib-img-2" 
-                                      alt="Detalle interior de la librería" 
-                                      loading="lazy">
+                                 <img src="img/libreria1.jpg" class="lib-img-1" alt="Fachada de Librería" loading="lazy">
+                                 <img src="img/libreria2.jpg" class="lib-img-2" alt="Interior de Librería" loading="lazy">
                              </div>
                         </div>
                     </div>
@@ -648,9 +567,7 @@
                     <h2>Liderazgo Estratégico</h2>
                     <div style="display:flex; align-items:center; justify-content:center; height:80%;">
                         <div class="profile-card">
-                            <!-- Foto de Gloria desde archivo local -->
-                            <img src="img/gloria.jpg" 
-                                 alt="Gloria Melo González" class="profile-img" loading="lazy">
+                            <img src="img/gloria.jpg" alt="Gloria Melo González" class="profile-img" loading="lazy">
                             <div class="profile-data">
                                 <span style="color:var(--color-primary); font-weight:700; font-size:12px; letter-spacing:1px;">PONENTE PRINCIPAL</span>
                                 <h3 style="font-family:'Playfair Display'; font-size:38px; margin:5px 0 10px;">Gloria Melo</h3>
@@ -714,13 +631,24 @@
                                     <h3>Marco Legal</h3>
                                     <span style="font-size:12px; color:#888;">Reglas del Juego</span>
                                 </div>
-                                <div class="flip-back">
-                                    <h3>Normativa Clave</h3>
-                                    <ul>
-                                        <li><strong>Decreto 1082 (2015):</strong> Manual base.</li>
-                                        <li><strong>Decreto 874 (2024):</strong> Economía popular.</li>
-                                    </ul>
-                                    <button class="btn-white-outline" onclick="event.stopPropagation(); app.openModal('m-marco-legal')" style="margin-top:15px; font-size:12px;">Ver Detalles</button>
+                                <div class="flip-back" style="padding: 25px;">
+                                    <h3 style="font-size: 18px; margin-bottom: 15px;">Normativa Clave</h3>
+                                    
+                                    <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77653" target="_blank" rel="noopener noreferrer" class="legal-badge" onclick="event.stopPropagation();">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        <strong>Decreto 1082 (2015)</strong>
+                                        <span>El manual base de contratación.</span>
+                                    </a>
+
+                                    <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=244716" target="_blank" rel="noopener noreferrer" class="legal-badge" onclick="event.stopPropagation();">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        <strong>Decreto 874 (2024)</strong>
+                                        <span>Economía popular y solidaria.</span>
+                                    </a>
+
+                                    <button class="btn-white-outline" onclick="event.stopPropagation(); app.openModal('m-marco-legal')" style="font-size:11px; margin-top:15px; width:100%; justify-content: center;">
+                                        <i class="fa-solid fa-plus"></i> Ver Todas las Normas
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -807,7 +735,7 @@
                                 <a href="https://www.alpiedelaletralibreria.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline"><i class="fa-solid fa-globe"></i> Sitio Web</a>
                             </div>
 
-                            <a href="https://api.whatsapp.com/send?phone=573006522368&text=Hola,%20vengo%20de%20ver%20la%20presentación%20institucional%20y%20me%20interesa%20saber%20más" target="_blank" rel="noopener noreferrer" class="btn-main" style="width: 100%; justify-content: center; background: #25D366;">
+                            <a href="https://api.whatsapp.com/send?phone=573006522368&text=Hola%2C%20vi%20la%20presentaci%C3%B3n%20'M%C3%A1s%20All%C3%A1%20de%20la%20Estanter%C3%ADa'%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20c%C3%B3mo%20podemos%20trabajar%20juntos." target="_blank" rel="noopener noreferrer" class="btn-main" style="width: 100%; justify-content: center; background: #25D366;">
                                 <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Contactar por WhatsApp
                             </a>
                         </div>
@@ -816,7 +744,7 @@
 
             </main>
 
-            <!-- MODALES (Ocultos por defecto) -->
+            <!-- MODALES -->
             
             <!-- Modal Historia -->
             <div class="modal-backdrop" id="m-historia" onclick="app.closeModal(event)">
@@ -898,14 +826,17 @@
                     <p>Automatice el pago de seguridad social. Un día de retraso congela sus cuentas de cobro.</p>
                 </div>
             </div>
+
+            <!-- Modal Marco Legal Completo -->
             <div class="modal-backdrop" id="m-marco-legal" onclick="app.closeModal(event)">
                 <div class="modal-content" style="max-width:600px;">
                     <div class="close-modal" onclick="app.forceClose('m-marco-legal')">&times;</div>
-                    <h2 style="color:var(--color-secondary);">Marco Normativo</h2>
-                    <ul style="margin-top:20px; line-height:2;">
-                        <li><a href="#" style="color:var(--color-primary);">Decreto 1082 de 2015</a></li>
-                        <li><a href="#" style="color:var(--color-primary);">Ley 80 de 1993</a></li>
-                        <li><a href="#" style="color:var(--color-primary);">Guía Colombia Compra Eficiente</a></li>
+                    <h2 style="color:var(--color-secondary);">Marco Normativo Completo</h2>
+                    <ul style="margin-top:20px; line-height:2; font-size:15px;">
+                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=77653" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Decreto 1082 de 2015</a> - Reglamentario del Sector Administrativo de Planeación Nacional.</li>
+                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=244716" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Decreto 874 de 2024</a> - Contratación directa con economía popular y comunitaria.</li>
+                        <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Ley 80 de 1993</a> - Estatuto General de Contratación de la Administración Pública.</li>
+                        <li><a href="https://www.colombiacompra.gov.co/wp-content/uploads/2025/03/manual_de_contratacion_compressed.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary); text-decoration: underline;">Guía Colombia Compra Eficiente</a> - Manuales oficiales.</li>
                     </ul>
                 </div>
             </div>
@@ -915,16 +846,13 @@
 
     <script>
         /**
-         * Lógica de la Aplicación (Encapsulada)
+         * ==========================================
+         * LÓGICA DE APLICACIÓN
+         * ==========================================
          */
         const app = (function() {
-            // Estado privado
-            const state = {
-                currentSlide: 0,
-                totalSlides: 7
-            };
+            const state = { currentSlide: 0, totalSlides: 7 };
 
-            // Métodos privados
             const fitToScreen = () => {
                 const wrapper = document.getElementById('scale-wrapper');
                 if (!wrapper) return;
@@ -938,7 +866,7 @@
                 const targetSlide = document.getElementById(`slide-${index}`);
                 if (targetSlide) targetSlide.classList.add('active');
 
-                // Nav Items
+                // Sidebar Navigation
                 document.querySelectorAll('.nav-item').forEach(n => {
                     n.classList.remove('active');
                     n.setAttribute('aria-selected', 'false');
@@ -949,7 +877,7 @@
                     navItems[index].setAttribute('aria-selected', 'true');
                 }
 
-                // Counter
+                // Slide Counter
                 const counter = document.getElementById('current-slide-num');
                 if (counter) counter.innerText = index + 1;
             };
@@ -965,13 +893,11 @@
                 }
             };
 
-            // API Pública
             return {
                 init: function() {
                     fitToScreen();
                     window.addEventListener('resize', fitToScreen);
                     
-                    // Keyboard Navigation
                     document.addEventListener('keydown', (e) => {
                         if (document.querySelector('.modal-backdrop.visible')) {
                             if (e.key === 'Escape') this.closeAllModals();
@@ -981,7 +907,6 @@
                         if(e.key === 'ArrowLeft') this.prevSlide();
                     });
 
-                    // Init state
                     this.goToSlide(0);
                 },
 
@@ -994,7 +919,6 @@
                 nextSlide: function() { this.goToSlide(state.currentSlide + 1); },
                 prevSlide: function() { this.goToSlide(state.currentSlide - 1); },
 
-                // Modal Logic
                 openModal: function(id) {
                     const el = document.getElementById(id);
                     if(el) el.classList.add('visible');
@@ -1012,7 +936,6 @@
                     document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('visible'));
                 },
 
-                // Checklist Logic
                 toggleCheck: function(el) {
                     el.classList.toggle('completed');
                     const total = document.querySelectorAll('.check-row').length;
@@ -1027,8 +950,7 @@
             };
         })();
 
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', () => app.init());
+        window.onload = () => app.init();
 
     </script>
 </body>
