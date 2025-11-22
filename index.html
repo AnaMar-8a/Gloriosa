@@ -4,52 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Presentación Institucional Librería Al Pie de la Letra - Estrategias de Ventas y Sector Público">
+    <meta name="author" content="Al Pie de la Letra">
     <title>Al Pie de la Letra - Estrategia Institucional</title>
     
     <!-- =========================================
-       DEPENDENCIAS EXTERNAS (Optimized Load)
-       ========================================= -->
+        DEPENDENCIAS EXTERNAS (CDNs)
+        No borrar ni modificar estos enlaces.
+        ========================================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
         /* =========================================
-           1. VARIABLES DE DISEÑO (Design Tokens)
-           Cambie estos valores para ajustar el tema globalmente.
+           1. VARIABLES DE DISEÑO (CONFIGURACIÓN GLOBAL)
+           [EDITAR AQUI] Cambia los colores para ajustar la marca.
            ========================================= */
         :root {
-            /* Colores de Marca */
-            --color-primary: #e32c1f;       /* Rojo Institucional */
-            --color-primary-dark: #c01e12;  /* Rojo Interacción */
-            --color-secondary: #2596be;     /* Azul Acento */
-            --color-secondary-dark: #1a7a9c;
-            --color-success: #2ecc71;       /* Verde Éxito */
+            /* Colores Principales */
+            --color-primary: #C62828;       /* Rojo Institucional */
+            --color-primary-light: #FFEBEE; /* Fondo suave rojo */
+            --color-secondary: #0277BD;     /* Azul Institucional */
+            --color-secondary-dark: #01579B;
             
-            /* Fondos y Superficies */
-            --bg-app: #f0f2f5;              /* Fondo externo */
-            --bg-card: #ffffff;             /* Fondo del slide */
+            /* Colores de Estado y Acento */
+            --color-accent: #FFD600;        /* Amarillo (Highlights) */
+            --color-success: #2E7D32;       /* Verde (Éxito/Checklist) */
             
-            /* Tipografía */
-            --text-main: #2d3436;
-            --text-muted: #636e72;
-            --text-inverse: #ffffff;
+            /* Fondos y Textos */
+            --bg-app: #ECEFF1;              /* Fondo exterior */
+            --bg-card: #ffffff;             /* Fondo de las diapositivas */
+            --text-main: #263238;           /* Texto principal (Gris oscuro) */
+            --text-muted: #546E7A;          /* Texto secundario (Gris medio) */
+            --text-inverse: #ffffff;        /* Texto sobre fondos oscuros */
 
-            /* Efectos Visuales */
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 50px rgba(37, 150, 190, 0.15);
+            /* Configuración Visual */
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 25px 50px rgba(2, 119, 189, 0.15);
+            --radius-lg: 24px;              /* Bordes redondeados generales */
             
             /* Animaciones */
             --anim-fast: 0.2s ease;
-            --anim-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --anim-smooth: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         /* =========================================
            2. RESET Y ESTRUCTURA BASE
            ========================================= */
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-font-smoothing: antialiased; }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -61,10 +66,9 @@
             align-items: center;
             overflow: hidden;
             color: var(--text-main);
-            margin: 0;
         }
 
-        /* ESCALADO: Mantiene el aspecto 16:9 y escala el contenido */
+        /* Contenedor Escalable (Mantiene aspecto 16:9) */
         #scale-wrapper {
             width: 1280px;
             height: 720px;
@@ -78,7 +82,7 @@
             width: 100%;
             height: 100%;
             background-color: var(--bg-card);
-            border-radius: 24px;
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow-lg);
             display: flex;
             overflow: hidden;
@@ -86,47 +90,48 @@
         }
 
         /* =========================================
-           3. NAVEGACIÓN LATERAL
+           3. BARRA LATERAL (SIDEBAR)
            ========================================= */
         .sidebar {
-            width: 280px;
-            background: #fff;
-            border-right: 1px solid rgba(0,0,0,0.05);
+            width: 260px;
+            background: #F9FAFB;
+            border-right: 1px solid rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
-            padding: 40px 0;
+            padding: 35px 0;
             z-index: 50;
             flex-shrink: 0;
         }
 
         .brand {
-            padding: 0 30px;
-            margin-bottom: 40px;
-            border-left: 6px solid var(--color-primary);
+            padding: 0 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--color-primary);
+            margin-left: 5px;
         }
         
         .brand h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: 24px;
             color: var(--color-primary);
             line-height: 1;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
         
         .brand span {
             font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             color: var(--color-secondary);
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-weight: 700;
         }
 
         .nav-menu {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            padding: 0 15px;
+            gap: 6px;
+            padding: 0 12px;
             flex: 1;
             overflow-y: auto;
         }
@@ -134,233 +139,280 @@
         .nav-item {
             display: flex;
             align-items: center;
-            padding: 16px 24px;
-            border-radius: 12px;
+            padding: 14px 20px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all var(--anim-fast);
             color: var(--text-muted);
             font-weight: 500;
-            font-size: 15px;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
         }
 
         .nav-item:hover {
             background-color: rgba(37, 150, 190, 0.08);
             color: var(--color-secondary);
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
 
         .nav-item.active {
             background-color: var(--color-primary);
             color: var(--text-inverse);
-            box-shadow: 0 4px 15px rgba(227, 44, 31, 0.3);
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.25);
             font-weight: 600;
         }
 
-        .nav-item i { width: 24px; font-size: 18px; margin-right: 15px; text-align: center; }
+        .nav-item i { width: 24px; font-size: 16px; margin-right: 12px; text-align: center; }
 
-        .progress-indicator {
-            padding: 20px 30px 0;
-            font-size: 12px;
+        .controls-hint {
+            padding: 20px 25px 0;
+            font-size: 11px;
             color: #aaa;
             text-align: center;
             border-top: 1px solid #eee;
         }
+        .keyboard-icon {
+            border: 1px solid #ccc; padding: 2px 6px; border-radius: 4px; font-family: monospace; margin: 0 2px;
+        }
 
         /* =========================================
-           4. SLIDES (DIAPOSITIVAS)
+           4. SLIDES (ÁREA DE CONTENIDO)
            ========================================= */
         .main-content {
             flex: 1;
             position: relative;
             background-color: #fff;
-            /* Patrón de fondo sutil */
-            background-image: radial-gradient(var(--color-primary) 0.5px, transparent 0.5px), 
-                              radial-gradient(var(--color-primary) 0.5px, #ffffff 0.5px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
+            background-image: radial-gradient(#ECEFF1 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
             overflow: hidden;
         }
         
-        /* Máscara de opacidad para el patrón */
-        .main-content::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.96); z-index: 0;
-        }
-
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            padding: 50px 70px; opacity: 0; visibility: hidden;
-            transform: translateY(15px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            padding: 45px 65px; opacity: 0; visibility: hidden;
+            transform: translateY(20px) scale(0.98);
+            transition: all var(--anim-smooth);
             z-index: 1; display: flex; flex-direction: column;
-            pointer-events: none; /* Evita clics en slides ocultos */
+            pointer-events: none; 
         }
 
         .slide.active {
             opacity: 1; visibility: visible;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
             z-index: 10; pointer-events: auto;
         }
 
         /* Tipografía */
-        h1 { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--color-primary); margin-bottom: 15px; letter-spacing: -0.5px; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 34px; color: var(--color-secondary); margin-bottom: 25px; letter-spacing: -0.5px; }
-        p { font-size: 17px; line-height: 1.65; color: var(--text-muted); margin-bottom: 20px; max-width: 95%; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--color-primary); margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.1; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text-main); margin-bottom: 25px; letter-spacing: -0.5px; position: relative; display: inline-block; }
+        h2::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 40px; height: 3px; background: var(--color-secondary); border-radius: 2px; }
+        p { font-size: 16px; line-height: 1.7; color: var(--text-muted); margin-bottom: 20px; max-width: 95%; }
 
         /* =========================================
-           5. COMPONENTES UI REUTILIZABLES
+           5. COMPONENTES UI (Botones, Tarjetas, etc.)
            ========================================= */
         
-        /* Botones */
+        /* Botón Principal */
         .btn-main {
-            background: var(--color-primary); color: var(--text-inverse);
-            padding: 16px 42px; border-radius: 50px; border: none;
-            font-size: 17px; font-weight: 600; cursor: pointer; text-decoration: none;
-            box-shadow: 0 10px 25px rgba(227, 44, 31, 0.3);
-            transition: all var(--anim-fast); margin-top: 25px; display: inline-flex; align-items: center; gap: 12px;
+            background: linear-gradient(135deg, var(--color-primary), #B71C1C);
+            color: var(--text-inverse);
+            padding: 14px 36px; border-radius: 50px; border: none;
+            font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none;
+            box-shadow: 0 8px 20px rgba(198, 40, 40, 0.25);
+            transition: all var(--anim-fast); margin-top: 20px; 
+            display: inline-flex; align-items: center; gap: 10px;
+            position: relative; overflow: hidden;
         }
-        .btn-main:hover { transform: translateY(-2px); background-color: var(--color-primary-dark); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(198, 40, 40, 0.35); }
+        .btn-main::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.1); opacity:0; transition: opacity 0.2s; }
+        .btn-main:hover::after { opacity:1; }
 
+        /* Botón Secundario (Outline) */
         .btn-secondary-outline {
             background: transparent; color: var(--color-secondary);
-            border: 2px solid var(--color-secondary); padding: 12px 30px;
+            border: 2px solid var(--color-secondary); padding: 10px 25px;
             border-radius: 50px; font-weight: 600; cursor: pointer; text-decoration: none;
-            transition: all var(--anim-fast); display: inline-flex; align-items: center; gap: 10px;
+            transition: all var(--anim-fast); display: inline-flex; align-items: center; gap: 8px; font-size: 14px;
         }
-        .btn-secondary-outline:hover { background: var(--color-secondary); color: white; }
-
+        .btn-secondary-outline:hover { background: var(--color-secondary); color: white; transform: translateY(-2px); }
+        
+        /* Botón Blanco (Para fondos oscuros) */
         .btn-white-outline {
             background: transparent; color: white;
             border: 2px solid rgba(255,255,255,0.8); padding: 8px 20px;
-            border-radius: 50px; font-size: 13px; font-weight: 600;
-            cursor: pointer; transition: all var(--anim-fast); margin-top: 15px;
-            display: inline-flex; align-items: center; gap: 8px;
+            border-radius: 50px; font-size: 12px; font-weight: 600;
+            cursor: pointer; transition: all var(--anim-fast);
+            display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
         }
         .btn-white-outline:hover { background: white; color: var(--color-secondary); }
 
-        /* Redes Sociales */
-        .social-link {
-            color: var(--text-muted); font-size: 26px; transition: all var(--anim-fast);
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 50px; height: 50px; border-radius: 50%; background: #f5f5f5; text-decoration: none;
+        /* Hero Section (Slide 0) */
+        .hero-wrapper { display: flex; align-items: center; height: 100%; gap: 50px; }
+        .hero-text { flex: 1; z-index: 2; animation: slideInLeft 0.8s ease-out; }
+        .hero-visual { 
+            flex: 1; height: 85%; 
+            background: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1000') center/cover; 
+            border-radius: 24px; 
+            box-shadow: -15px 15px 0 var(--color-primary-light);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInScale 1s ease-out;
         }
-        .social-link:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-        .social-link.web:hover { color: var(--color-secondary); background: #eef4fb; }
-        .social-link.insta:hover { color: #E1306C; background: #fff0f5; }
-        .social-link.fb:hover { color: #1877F2; background: #eaf4ff; }
+        .hero-visual::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, rgba(0,0,0,0.3), transparent); }
 
-        /* Grids & Layouts */
-        .hero-wrapper { display: flex; align-items: center; height: 100%; gap: 60px; }
-        .hero-text { flex: 1; z-index: 2; }
-        .hero-visual { flex: 1; height: 85%; background: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80&w=1000') center/cover; border-radius: 30px; box-shadow: -20px 20px 0 var(--color-secondary); transform: perspective(1000px) rotateY(-5deg); transition: transform 0.8s ease; }
-        .hero-visual:hover { transform: perspective(1000px) rotateY(0deg); }
-
-        .lib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; height: 100%; align-items: center; }
-        .lib-stats { display: flex; gap: 30px; margin-top: 30px; }
-        .stat-item { border-left: 4px solid var(--color-secondary); padding-left: 15px; }
-        .stat-num { font-size: 36px; font-weight: 800; color: var(--color-secondary); font-family: 'Playfair Display', serif; }
-        .stat-label { font-size: 14px; text-transform: uppercase; }
-        .lib-image-collage { position: relative; height: 400px; width: 100%; }
-        .img-main { position: absolute; top: 0; right: 0; width: 80%; height: 80%; object-fit: cover; border-radius: 20px; z-index: 2; box-shadow: var(--shadow-md); }
-        .img-secondary { position: absolute; bottom: 0; left: 0; width: 60%; height: 60%; object-fit: cover; border-radius: 20px; border: 5px solid white; z-index: 3; box-shadow: var(--shadow-lg); }
-
-        /* Perfil Profesional */
-        .profile-new-layout { display: flex; align-items: center; height: 100%; gap: 60px; }
-        .profile-img-container { width: 40%; position: relative; }
-        .profile-img-main { width: 100%; height: 400px; border-radius: 20px; object-fit: cover; box-shadow: 0 20px 40px rgba(227, 44, 31, 0.2); }
-        .profile-badge { position: absolute; bottom: -20px; right: -20px; background: var(--color-primary); color: white; padding: 15px 25px; border-radius: 50px; font-weight: 700; font-size: 16px; box-shadow: var(--shadow-md); }
-        .profile-content { width: 60%; display: flex; flex-direction: column; justify-content: center; }
-        .role-label { color: var(--color-secondary); text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
-        .profile-separator { height: 4px; width: 80px; background: var(--color-secondary); margin: 20px 0; }
-        .pill { background: #f4faff; color: var(--color-secondary); padding: 12px 25px; border-radius: 30px; font-size: 14px; font-weight: 600; border: 1px solid rgba(37, 150, 190, 0.2); display: flex; align-items: center; gap: 10px; }
-
-        /* Tabs */
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 35px; background: #f8f9fa; padding: 6px; border-radius: 16px; width: fit-content; }
-        .tab-btn { padding: 12px 32px; border-radius: 12px; cursor: pointer; font-weight: 600; color: #888; transition: all 0.3s; font-size: 15px; }
-        .tab-btn.active { background: white; color: var(--color-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
-        .tab-content.active { display: block; }
-        .info-box { background: white; border-left: 6px solid var(--color-secondary); padding: 40px; border-radius: 0 20px 20px 0; box-shadow: var(--shadow-sm); }
+        /* Tarjeta de Video (Fallback para errores de embed) */
+        .video-fallback-card {
+            width: 100%; height: 100%;
+            border-radius: 12px; overflow: hidden;
+            box-shadow: var(--shadow-sm); position: relative;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            cursor: pointer; group; border: 2px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+        .video-fallback-card::before {
+            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.4); transition: background 0.3s;
+        }
+        .video-fallback-card:hover::before { background: rgba(0,0,0,0.2); }
         
-        /* Flip Cards */
-        .flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; height: 380px; perspective: 1500px; }
-        .flip-card { width: 100%; height: 100%; cursor: pointer; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.7s; transform-style: preserve-3d; box-shadow: var(--shadow-sm); border-radius: 20px; }
-        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; }
-        .flip-front { background-color: white; border-top: 8px solid var(--color-primary); }
-        .flip-back { background-color: var(--color-secondary); color: white; transform: rotateY(180deg); text-align: left; }
-        .flip-back h3, .flip-back p, .flip-back li { color: white; }
-        .flip-icon { font-size: 65px; color: var(--color-primary); margin-bottom: 25px; }
+        .play-button {
+            width: 60px; height: 60px;
+            background: rgba(255,255,255,0.9); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #FF0000; font-size: 20px; z-index: 2;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, background 0.3s;
+        }
+        .video-fallback-card:hover .play-button { transform: scale(1.1); background: white; }
 
-        /* Riesgos Modernos (Cards) */
-        .risk-grid { display: flex; gap: 30px; justify-content: center; margin-top: 30px; height: 350px; }
-        .risk-card { flex: 1; background: white; border-radius: 20px; box-shadow: var(--shadow-md); padding: 30px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; transition: all 0.4s; cursor: pointer; border-bottom: 6px solid var(--color-primary); }
-        .risk-card:hover { transform: translateY(-15px); box-shadow: var(--shadow-lg); }
-        .risk-icon-wrapper { width: 80px; height: 80px; background: #fff0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 32px; color: var(--color-primary); transition: all 0.3s; position: relative; z-index: 2; }
-        .risk-card:hover .risk-icon-wrapper { background: var(--color-primary); color: white; transform: scale(1.1) rotate(10deg); }
-        .risk-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); position: relative; z-index: 2; }
-        .risk-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; position: relative; z-index: 2; }
-        .risk-action { margin-top: auto; color: var(--color-primary); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(10px); transition: all 0.3s; position: relative; z-index: 2; }
-        .risk-card:hover .risk-action { opacity: 1; transform: translateY(0); }
+        /* Tarjetas Acordeón (Relaciones) */
+        .relations-container { display: flex; width: 100%; height: 400px; gap: 15px; margin-top: 20px; }
+        .rel-card {
+            position: relative; height: 100%; flex: 1;
+            border-radius: 20px; overflow: hidden; cursor: pointer;
+            transition: flex 0.5s ease-in-out;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 25px; background-size: cover; background-position: center;
+            box-shadow: var(--shadow-sm);
+        }
+        /* [EDITAR AQUI] Imágenes de fondo para las tarjetas de relaciones */
+        .rel-card:nth-child(1) { background-image: linear-gradient(to top, rgba(2,119,189,0.9), rgba(2,119,189,0.4)), url('https://images.unsplash.com/photo-1577011635230-9457b5255d56?auto=format&fit=crop&q=80&w=600'); } 
+        .rel-card:nth-child(2) { background-image: linear-gradient(to top, rgba(198,40,40,0.9), rgba(198,40,40,0.4)), url('https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&q=80&w=600'); } 
+        .rel-card:nth-child(3) { background-image: linear-gradient(to top, rgba(46,125,50,0.9), rgba(46,125,50,0.4)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=600'); } 
+
+        .rel-card:hover { flex: 2.5; }
+        .rel-icon { font-size: 32px; color: white; margin-bottom: 10px; }
+        .rel-title { font-family: 'Playfair Display', serif; font-size: 24px; color: white; margin-bottom: 10px; white-space: nowrap; }
+        .rel-desc { color: rgba(255,255,255,0.9); font-size: 14px; opacity: 0; transition: opacity 0.3s 0.1s; transform: translateY(10px); }
+        .rel-card:hover .rel-desc { opacity: 1; transform: translateY(0); }
+
+        /* Tarjetas de Perfil */
+        .profile-card {
+            background: white; border-radius: 20px; 
+            box-shadow: var(--shadow-md); padding: 0; 
+            display: flex; overflow: hidden; border: 1px solid #eee; height: 400px;
+        }
+        .profile-img { width: 40%; object-fit: cover; }
+        .profile-data { width: 60%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        
+        .badges-container { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .badge-item { 
+            background: #E3F2FD; color: var(--color-secondary-dark); 
+            padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        /* Flip Cards Interactivos (Sector Público) */
+        .flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; height: 360px; perspective: 1000px; }
+        .flip-card { width: 100%; height: 100%; cursor: pointer; group; }
+        .flip-card-inner { 
+            position: relative; width: 100%; height: 100%; text-align: center; 
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            transform-style: preserve-3d; box-shadow: var(--shadow-sm); border-radius: 20px; 
+        }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-front, .flip-back { 
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
+            border-radius: 20px; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 30px; 
+        }
+        .flip-front { background-color: white; border: 1px solid #eee; border-bottom: 5px solid var(--color-primary); }
+        .flip-back { 
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark)); 
+            color: white; transform: rotateY(180deg); text-align: left; align-items: flex-start;
+        }
+        .flip-back h3, .flip-back p { color: white; }
+        .flip-back ul { padding-left: 20px; text-align: left; margin-top: 10px; font-size: 14px; line-height: 1.6; }
+
+        /* Tarjetas de Riesgos */
+        .risk-grid { display: flex; gap: 25px; justify-content: center; margin-top: 20px; }
+        .risk-card { 
+            flex: 1; background: white; border-radius: 16px; box-shadow: var(--shadow-sm); padding: 30px 20px; 
+            display: flex; flex-direction: column; align-items: center; text-align: center; 
+            transition: all 0.3s; border: 1px solid transparent; cursor: pointer; position: relative; overflow: hidden;
+        }
+        .risk-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--color-primary-light); }
+        .risk-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; 
+            background: #ddd; transition: background 0.3s;
+        }
+        .risk-card:hover::before { background: var(--color-primary); }
+        
+        .icon-box { 
+            width: 60px; height: 60px; background: var(--color-primary-light); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            color: var(--color-primary); font-size: 24px; margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        .risk-card:hover .icon-box { background: var(--color-primary); color: white; transform: rotate(15deg); }
 
         /* =========================================
-           6. MODALES (VENTANAS EMERGENTES)
+           6. MODALES & UTILIDADES
            ========================================= */
-        .modal-backdrop { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); z-index: 999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .modal-backdrop.visible { display: flex; }
+        .modal-backdrop { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(38, 50, 56, 0.6); z-index: 999; 
+            display: none; justify-content: center; align-items: center; 
+            backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s;
+        }
+        .modal-backdrop.visible { display: flex; opacity: 1; }
         
         .modal-content { 
-            background: white; width: 90%; max-width: 1100px; padding: 50px; 
-            border-radius: 24px; position: relative; animation: slideUp 0.3s; 
-            box-shadow: var(--shadow-lg); border-top: 8px solid var(--color-primary); 
-            /* Scroll Fix */
-            max-height: 85vh; overflow-y: auto;
-            scrollbar-width: thin; scrollbar-color: var(--color-secondary) #f0f0f0;
+            background: white; width: 90%; max-width: 900px; padding: 40px; 
+            border-radius: 20px; position: relative; transform: scale(0.9); 
+            transition: transform 0.3s; box-shadow: var(--shadow-lg);
+            max-height: 90vh; overflow-y: auto;
         }
-        /* Scrollbar Webkit */
-        .modal-content::-webkit-scrollbar { width: 8px; }
-        .modal-content::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 10px; }
-        .modal-content::-webkit-scrollbar-thumb { background-color: var(--color-secondary); border-radius: 10px; }
+        .modal-backdrop.visible .modal-content { transform: scale(1); }
+        
+        .close-modal { 
+            position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; 
+            width: 36px; height: 36px; background: #f5f5f5; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #555; transition: all 0.2s; 
+        }
+        .close-modal:hover { background: var(--color-primary); color: white; }
 
-        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 28px; cursor: pointer; color: #ccc; transition: color 0.2s; }
-        .close-modal:hover { color: var(--color-primary); }
+        /* Checklist Interactivo */
+        .checklist-container { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .check-row { 
+            display: flex; align-items: center; padding: 15px; border: 1px solid #eee; 
+            border-radius: 12px; cursor: pointer; transition: all 0.2s; background: #fff;
+        }
+        .check-row:hover { background: #fafafa; border-color: #ccc; }
+        .check-row.completed { background: #E8F5E9; border-color: var(--color-success); }
+        
+        .check-box-custom { 
+            width: 24px; height: 24px; border: 2px solid #bdbdbd; border-radius: 6px; 
+            margin-right: 15px; display: flex; align-items: center; justify-content: center; color: white;
+        }
+        .check-row.completed .check-box-custom { background: var(--color-success); border-color: var(--color-success); }
 
-        /* Elementos dentro de Modales */
-        .legal-list { list-style: none; padding: 0; margin-top: 20px; }
-        .legal-list li { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-        .legal-list strong { color: var(--color-secondary); font-size: 18px; display: block; margin-bottom: 5px; }
-        .legal-link { display: inline-block; margin-top: 10px; color: var(--color-primary); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: all 0.2s; }
-        .legal-link:hover { border-bottom-color: var(--color-primary); }
+        /* Animaciones CSS */
+        @keyframes slideInLeft { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
+        @keyframes fadeInScale { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
 
-        /* Timeline Horizontal */
-        .horizontal-timeline-container { display: flex; justify-content: space-between; align-items: flex-start; position: relative; margin-top: 40px; padding-top: 20px; }
-        .horizontal-timeline-container::before { content: ''; position: absolute; top: 27px; left: 50px; right: 50px; height: 4px; background: #eee; z-index: 0; }
-        .h-timeline-item { position: relative; z-index: 1; width: 22%; text-align: center; }
-        .h-timeline-year { display: inline-block; background: var(--color-secondary); color: white; padding: 10px 20px; border-radius: 50px; font-weight: 700; font-size: 18px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(37, 150, 190, 0.3); position: relative; }
-        .h-timeline-year::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; background: white; border: 4px solid var(--color-secondary); border-radius: 50%; }
-        .h-timeline-content { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px solid #eee; font-size: 14px; color: #555; line-height: 1.6; box-shadow: var(--shadow-sm); min-height: 150px; }
-        .h-timeline-content strong { color: var(--color-primary); display: block; margin-bottom: 5px; font-size: 16px; }
-
-        /* Checklist */
-        .check-preview { list-style: none; padding-left: 0; margin-bottom: 20px; text-align: left; width: 100%; }
-        .check-preview li { margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
-        .check-preview i { color: #fff; }
-        .progress-container { width: 100%; background-color: #f0f0f0; border-radius: 50px; height: 25px; margin-bottom: 30px; overflow: hidden; border: 1px solid #e0e0e0; }
-        .progress-bar { width: 0%; height: 100%; background-color: var(--color-success); border-radius: 50px; text-align: center; line-height: 25px; color: white; font-weight: 700; font-size: 12px; transition: width 0.5s ease-in-out; }
-        .interactive-checklist { display: flex; flex-direction: column; gap: 15px; }
-        .check-item { background: white; border: 2px solid #eee; border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: all 0.2s; }
-        .check-item:hover { border-color: var(--color-secondary); transform: translateX(5px); }
-        .check-item.checked { border-color: var(--color-success); background-color: #f0fff4; }
-        .check-circle { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #ccc; display: flex; justify-content: center; align-items: center; color: white; transition: all 0.2s; flex-shrink: 0; }
-        .check-item.checked .check-circle { background-color: var(--color-success); border-color: var(--color-success); }
-        .check-text strong { display: block; color: var(--text-main); font-size: 16px; margin-bottom: 2px; }
-        .check-text span { font-size: 13px; color: var(--text-muted); }
-        .check-item.checked .check-text strong { color: var(--color-success); text-decoration: line-through; }
-
-        /* Animaciones */
-        @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
     </style>
 </head>
 <body>
@@ -368,129 +420,377 @@
     <div id="scale-wrapper">
         <div id="app-container">
             
-            <!-- SIDEBAR: Navegación -->
+            <!-- SIDEBAR: Navegación Lateral -->
             <nav class="sidebar">
                 <div class="brand">
                     <h2>Al Pie de la Letra</h2>
-                    <span>ESTRATEGIA</span>
+                    <span>ESTRATEGIA B2G</span>
                 </div>
                 <div class="nav-menu">
-                    <div class="nav-item active" onclick="app.goToSlide(0)"><i class="fa-solid fa-rocket"></i> Inicio</div>
-                    <div class="nav-item" onclick="app.goToSlide(1)"><i class="fa-solid fa-book-open"></i> La Librería</div>
-                    <div class="nav-item" onclick="app.goToSlide(2)"><i class="fa-solid fa-user-tie"></i> Ponente</div>
-                    <div class="nav-item" onclick="app.goToSlide(3)"><i class="fa-solid fa-handshake"></i> Relaciones</div>
-                    <div class="nav-item" onclick="app.goToSlide(4)"><i class="fa-solid fa-building-columns"></i> Sector Público</div>
-                    <div class="nav-item" onclick="app.goToSlide(5)"><i class="fa-solid fa-triangle-exclamation"></i> Riesgos</div>
-                    <div class="nav-item" onclick="app.goToSlide(6)"><i class="fa-solid fa-comments"></i> Cierre</div>
+                    <div class="nav-item active" onclick="app.goToSlide(0)" role="button"><i class="fa-solid fa-rocket"></i> Inicio</div>
+                    <div class="nav-item" onclick="app.goToSlide(1)" role="button"><i class="fa-solid fa-book-open"></i> Identidad</div>
+                    <div class="nav-item" onclick="app.goToSlide(2)" role="button"><i class="fa-solid fa-user-tie"></i> Liderazgo</div>
+                    <div class="nav-item" onclick="app.goToSlide(3)" role="button"><i class="fa-solid fa-network-wired"></i> Relaciones</div>
+                    <div class="nav-item" onclick="app.goToSlide(4)" role="button"><i class="fa-solid fa-gavel"></i> Sector Público</div>
+                    <div class="nav-item" onclick="app.goToSlide(5)" role="button"><i class="fa-solid fa-shield-halved"></i> Gestión Riesgos</div>
+                    <div class="nav-item" onclick="app.goToSlide(6)" role="button"><i class="fa-solid fa-handshake-simple"></i> Cierre</div>
                 </div>
-                <div class="progress-indicator">Diapositiva <span id="current-slide-num">1</span> de 7</div>
+                <div class="controls-hint">
+                    Usar <span class="keyboard-icon">←</span> <span class="keyboard-icon">→</span> para navegar
+                </div>
             </nav>
 
-            <!-- CONTENIDO -->
+            <!-- CONTENIDO PRINCIPAL -->
             <main class="main-content">
 
-                <!-- SLIDE 0: PORTADA -->
+                <!-- ==================================================================
+                     SLIDE 0: PORTADA
+                     [ZONA EDITABLE] Títulos y descripción inicial
+                     ================================================================== -->
                 <section class="slide active" id="slide-0">
                     <div class="hero-wrapper">
                         <div class="hero-text">
-                            <h3 style="color:var(--color-secondary); letter-spacing: 2px; font-size: 14px; font-weight: 700; margin-bottom: 10px;">ESCUELA NACIONAL DE LIBRERÍAS</h3>
+                            <div style="display:inline-block; background: var(--color-primary-light); color: var(--color-primary); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 15px;">ESCUELA NACIONAL DE LIBRERÍAS</div>
                             <h1>Ventas Institucionales <br>y Compra Pública</h1>
-                            <p>Una guía estratégica para potenciar el alcance comercial y transformar su librería en un aliado cultural indispensable.</p>
-                            <button class="btn-main" onclick="app.goToSlide(1)">Iniciar Presentación <i class="fa-solid fa-arrow-right"></i></button>
+                            <p>Transforme su librería de un comercio tradicional a un <strong>aliado cultural estratégico</strong> para el Estado y las corporaciones.</p>
+                            <button class="btn-main" onclick="app.goToSlide(1)">
+                                Iniciar Estrategia <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
-                        <div class="hero-visual"></div>
+                        <div class="hero-visual">
+                            <!-- Background Image definida en CSS -->
+                        </div>
                     </div>
                 </section>
 
-                <!-- SLIDE 1: LA LIBRERÍA -->
+                <!-- ==================================================================
+                     SLIDE 1: IDENTIDAD
+                     [ZONA EDITABLE] Texto sobre la historia y la imagen principal
+                     ================================================================== -->
                 <section class="slide" id="slide-1">
-                    <h2>Sobre Nosotros</h2>
-                    <div class="lib-grid">
-                        <div class="lib-info">
-                            <h1>Al Pie de la Letra</h1>
-                            <p style="font-size: 16px; color: #555; margin-bottom:15px;"><strong>Tradición y Familia:</strong> La familia Melo González, educadores y editores, fundó este espacio para la conversación social y la cultura.</p>
-                            <p style="font-size: 16px; color: #555;">Nuestra filosofía incluye títulos de fondo (filosofía, sociología, clásicos) y una escucha activa a nuestros lectores para construir el catálogo.</p>
-                            <div class="lib-stats">
-                                <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Años de Historia</div></div>
-                                <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Sedes Físicas</div></div>
-                            </div>
-                            <div style="margin-top: 30px;"><button class="btn-secondary-outline" onclick="app.openModal('m-historia')"><i class="fa-solid fa-clock-rotate-left"></i> Ver Nuestra Historia</button></div>
-                        </div>
-                        <div class="lib-image-collage"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1000" alt="Librería interior" class="img-main"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800" alt="Libros detalle" class="img-secondary"></div>
-                    </div>
-                </section>
-
-                <!-- SLIDE 2: PONENTE -->
-                <section class="slide" id="slide-2">
-                    <div class="profile-new-layout">
-                        <div class="profile-img-container"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Gloria Melo" class="profile-img-main"><div class="profile-badge">30+ Años de Trayectoria</div></div>
-                        <div class="profile-content"><span class="role-label">Ponente Principal</span><h1 style="font-size: 52px; margin-bottom: 0; line-height: 1.1;">Gloria Melo <span style="font-weight:300; color:var(--text-main)">González</span></h1><div class="profile-separator"></div><p style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 10px;">Economista de la Universidad de Antioquia | Cofundadora & Gerente</p><p style="font-size: 16px; color: #555; margin-bottom: 25px; line-height: 1.6;">Desde 1993, Gloria ha demostrado que la rigurosidad administrativa y la sensibilidad cultural no son opuestas, sino complementarias.</p><div style="display: flex; gap: 15px; flex-wrap: wrap;"><div class="pill"><i class="fa-solid fa-briefcase" style="color:var(--color-primary)"></i> Gerencia Cultural</div><div class="pill"><i class="fa-solid fa-chart-line" style="color:var(--color-primary)"></i> Estrategia Comercial</div><div class="pill"><i class="fa-solid fa-handshake" style="color:var(--color-primary)"></i> Alianzas Institucionales</div></div></div>
-                    </div>
-                </section>
-
-                <!-- SLIDE 3: RELACIONAMIENTO -->
-                <section class="slide" id="slide-3">
-                    <h2>Estrategias de Relacionamiento</h2>
-                    <div class="tabs-header"><div class="tab-btn active" onclick="app.openTab(0)">1. Cercanía</div><div class="tab-btn" onclick="app.openTab(1)">2. Eventos</div><div class="tab-btn" onclick="app.openTab(2)">3. Convenios</div></div>
-                    <div class="tab-content active" id="tab-0"><div class="info-box"><h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">El Mapa del Tesoro Local</h3><p>Conquiste su entorno inmediato (Radio 2km):</p><ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;"><li><strong>Colegios y Jardines:</strong> Ofrezca "La Hora del Cuento".</li><li><strong>Empresas Vecinas:</strong> Bonos de regalo corporativos.</li><li><strong>Cafés:</strong> Libros en consignación.</li></ul></div></div>
-                    <div class="tab-content" id="tab-1"><div class="info-box"><h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">Ferias: Salir de la Estantería</h3><ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;"><li><strong>Grandes Ferias (FILBo):</strong> Posicionamiento.</li><li><strong>Ferias Escolares:</strong> Venta directa.</li><li><strong>Ferias Corporativas:</strong> Bienestar laboral.</li></ul></div></div>
-                    <div class="tab-content" id="tab-2"><div class="info-box"><h3 style="color:var(--color-primary); margin-bottom: 15px; font-size: 24px;">Alianzas Estratégicas</h3><ul style="margin-left: 20px; color: var(--text-muted); margin-top: 15px; line-height: 1.8;"><li><strong>Libranzas:</strong> Descuento por nómina.</li><li><strong>Cajas de Compensación:</strong> Tarifas diferenciales.</li></ul></div></div>
-                </section>
-
-                <!-- SLIDE 4: SECTOR PÚBLICO -->
-                <section class="slide" id="slide-4">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-end;"><h2>Venta Pública y SECOP II</h2><p style="font-size: 13px; color: var(--color-secondary); margin-bottom: 25px;"><i class="fa-solid fa-hand-pointer"></i> Pase el mouse sobre las tarjetas</p></div>
-                    <div class="flip-grid">
-                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><i class="fa-solid fa-scale-balanced flip-icon"></i><h3 style="color:var(--text-main)">Marco Legal</h3><p>Las reglas del juego</p></div><div class="flip-back"><h3>Marco Normativo</h3><p style="font-size:13px;">En Colombia, las compras públicas están reguladas.</p><ul style="margin-top: 10px; text-align:left; font-size:13px;"><li>Decreto 4170 de 2011</li><li>Decreto 1082 de 2015</li><li>Decreto 874 de 2024</li></ul><button class="btn-white-outline" onclick="app.openModal('m-marco-legal')">Ver Normativa Completa</button></div></div></div>
-                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><i class="fa-solid fa-laptop-code flip-icon"></i><h3 style="color:var(--text-main)">SECOP II</h3><p>Plataforma Digital</p></div><div class="flip-back"><h3>Mercado Digital</h3><ul><li>Registro Gratuito.</li><li>Códigos UNSPSC.</li><li>Alertas de Licitación.</li></ul></div></div></div>
-                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-front"><i class="fa-solid fa-file-signature flip-icon"></i><h3 style="color:var(--text-main)">Venta Directa</h3><p>Documentación Vital</p></div><div class="flip-back"><h3>Requisitos Clave</h3><ul class="check-preview"><li><i class="fa-solid fa-check"></i> Documentos Legales</li><li><i class="fa-solid fa-check"></i> Antecedentes</li><li><i class="fa-solid fa-check"></i> Parafiscales</li></ul><button class="btn-white-outline" onclick="app.openModal('m-checklist')"><i class="fa-solid fa-list-check"></i> Iniciar Validación</button></div></div></div>
-                    </div>
-                </section>
-
-                <!-- SLIDE 5: RIESGOS -->
-                <section class="slide" id="slide-5">
-                    <h2>¡Cuidado! Riesgos Críticos</h2>
-                    <p>Identifique y mitigue los puntos de fallo más comunes en la venta institucional.</p>
-                    <div class="risk-grid">
-                        <div class="risk-card" onclick="app.openModal('m-flujo')"><div class="risk-icon-wrapper"><i class="fa-solid fa-money-bill-trend-up"></i></div><div class="risk-title">Asfixia Financiera</div><p class="risk-desc">Pagar a 30 días y cobrar a 90 días.</p><div class="risk-action"><i class="fa-solid fa-shield-halved"></i> Ver Solución</div></div>
-                        <div class="risk-card" onclick="app.openModal('m-stock')"><div class="risk-icon-wrapper"><i class="fa-solid fa-boxes-stacked"></i></div><div class="risk-title">Stock Fantasma</div><p class="risk-desc">Ofertar sin verificación física.</p><div class="risk-action"><i class="fa-solid fa-shield-halved"></i> Ver Solución</div></div>
-                        <div class="risk-card" onclick="app.openModal('m-legal')"><div class="risk-icon-wrapper"><i class="fa-solid fa-file-contract"></i></div><div class="risk-title">Bloqueo Legal</div><p class="risk-desc">Mora en seguridad social.</p><div class="risk-action"><i class="fa-solid fa-shield-halved"></i> Ver Solución</div></div>
-                    </div>
-                </section>
-
-                <!-- SLIDE 6: CIERRE -->
-                <section class="slide" id="slide-6">
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
-                        <h1 style="font-size: 64px; margin-bottom: 20px;">¡Gracias!</h1>
-                        <p style="font-size: 22px; max-width: 700px; font-style: italic; color: var(--text-main);">"La venta institucional es la mejor forma de llevar la cultura a donde la gente trabaja y estudia."</p>
-                        <div style="margin-top: 40px; background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow-lg); border: 1px solid #eee; width: 700px;">
-                            <h3 style="color:var(--color-primary); margin-bottom: 25px; font-size: 24px;">Conectemos</h3>
-                            <div style="margin-bottom: 30px;">
-                                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Nuestras Sedes</p>
-                                <div style="display: flex; gap: 15px; justify-content: center;">
-                                    <a href="https://maps.app.goo.gl/QNLf6kBvn4TPSuVY7" target="_blank" class="btn-secondary-outline" style="font-size: 14px; padding: 10px 25px;"><i class="fa-solid fa-map-location-dot"></i> Sede Principal</a>
-                                    <a href="https://maps.app.goo.gl/vBX6upiHANNZqPPZ7" target="_blank" class="btn-secondary-outline" style="font-size: 14px; padding: 10px 25px;"><i class="fa-solid fa-landmark"></i> Sede MAMM</a>
+                    <h2>Nuestra Identidad</h2>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items:center; height:80%;">
+                        <div>
+                            <h3 style="font-family:'Playfair Display'; font-size:36px; color:var(--color-primary);">Más que libros,<br>somos cultura.</h3>
+                            <p style="margin-top:20px;">Fundada en 1993 por la familia Melo González, <strong>Al Pie de la Letra</strong> nació de la vocación educadora. No vendemos objetos; curamos contenidos de fondo: filosofía, sociología y clásicos universales.</p>
+                            <div style="display:flex; gap:40px; margin: 30px 0;">
+                                <div>
+                                    <span style="font-size:42px; font-weight:800; color:var(--color-secondary); display:block;">30+</span>
+                                    <span style="font-size:12px; text-transform:uppercase; font-weight:600; color:#888;">Años de Historia</span>
+                                </div>
+                                <div>
+                                    <span style="font-size:42px; font-weight:800; color:var(--color-secondary); display:block;">2</span>
+                                    <span style="font-size:12px; text-transform:uppercase; font-weight:600; color:#888;">Sedes Físicas</span>
                                 </div>
                             </div>
-                            <div style="margin-bottom: 30px; display: flex; gap: 25px; justify-content: center; align-items: center;">
-                                <a href="https://www.alpiedelaletralibreria.com/" target="_blank" class="social-link web" title="Sitio Web"><i class="fa-solid fa-globe"></i></a>
-                                <a href="https://www.instagram.com/alpiedelaletra_libreria/?hl=es-la" target="_blank" class="social-link insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="https://www.facebook.com/alpiedelaletra.libreria" target="_blank" class="social-link fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <button class="btn-secondary-outline" onclick="app.openModal('m-historia')">
+                                <i class="fa-solid fa-timeline"></i> Ver Trayectoria
+                            </button>
+                        </div>
+                        <div style="position:relative; height:100%;">
+                             <!-- [EDITAR AQUI] Imagen de la Librería -->
+                             <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=1000" style="width:100%; height:100%; object-fit:cover; border-radius:20px; box-shadow:var(--shadow-md);" alt="Librería Interior">
+                             <div style="position:absolute; bottom:20px; left:20px; background:white; padding:15px; border-radius:12px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:10px;">
+                                <i class="fa-solid fa-quote-left" style="color:var(--color-primary);"></i>
+                                <span style="font-size:13px; font-weight:600; color:#555;">Un espacio para la conversación social.</span>
+                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================================
+                     SLIDE 2: LIDERAZGO
+                     [ZONA EDITABLE] Información del ponente
+                     ================================================================== -->
+                <section class="slide" id="slide-2">
+                    <h2>Liderazgo Estratégico</h2>
+                    <div style="display:flex; align-items:center; justify-content:center; height:80%;">
+                        <div class="profile-card">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=1000" alt="Gloria Melo" class="profile-img">
+                            <div class="profile-data">
+                                <span style="color:var(--color-primary); font-weight:700; font-size:12px; letter-spacing:1px;">PONENTE PRINCIPAL</span>
+                                <h3 style="font-family:'Playfair Display'; font-size:38px; margin:5px 0 10px;">Gloria Melo</h3>
+                                <p style="font-weight:500; color:#333;">Economista & Cofundadora</p>
+                                <p style="font-size:14px; margin-bottom:20px;">"La rigurosidad administrativa y la sensibilidad cultural no son opuestas, son el motor de la sostenibilidad en el sector librero."</p>
+                                <div class="badges-container">
+                                    <div class="badge-item"><i class="fa-solid fa-graduation-cap"></i> U. de Antioquia</div>
+                                    <div class="badge-item"><i class="fa-solid fa-briefcase"></i> Gerencia Cultural</div>
+                                    <div class="badge-item"><i class="fa-solid fa-handshake"></i> Alianzas Públicas</div>
+                                </div>
                             </div>
-                            <a href="https://api.whatsapp.com/send?phone=573008888828&text=Hola" target="_blank" class="btn-main" style="background-color: #25D366; border: none; text-decoration: none; margin-top: 0; font-size: 16px; padding: 14px 35px;"><i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Escríbenos al WhatsApp</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================================
+                     SLIDE 3: RELACIONAMIENTO
+                     ================================================================== -->
+                <section class="slide" id="slide-3">
+                    <h2>Ecosistema de Relaciones</h2>
+                    <p>Pase el cursor sobre las áreas para descubrir las oportunidades:</p>
+                    
+                    <div class="relations-container">
+                        <div class="rel-card">
+                            <div class="rel-icon"><i class="fa-solid fa-map-pin"></i></div>
+                            <h3 class="rel-title">Entorno Local</h3>
+                            <div class="rel-desc">
+                                <p><strong>Radio de 2km</strong></p>
+                                Colegios, Jardines y Cafés.<br>Estrategia: "La Hora del Cuento" y libros en consignación.
+                            </div>
+                        </div>
+                        <div class="rel-card">
+                            <div class="rel-icon"><i class="fa-solid fa-tent"></i></div>
+                            <h3 class="rel-title">Ferias</h3>
+                            <div class="rel-desc">
+                                <p><strong>Salir de la estantería</strong></p>
+                                Desde grandes eventos como FILBo hasta ferias corporativas de bienestar en empresas.
+                            </div>
+                        </div>
+                        <div class="rel-card">
+                            <div class="rel-icon"><i class="fa-solid fa-users-rectangle"></i></div>
+                            <h3 class="rel-title">Convenios</h3>
+                            <div class="rel-desc">
+                                <p><strong>Alianzas Estratégicas</strong></p>
+                                Fondos de Empleados y Cajas de Compensación.<br>Descuento por nómina (Libranzas).
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================================
+                     SLIDE 4: SECTOR PÚBLICO
+                     [ZONA EDITABLE] Enlaces a videos de YouTube
+                     ================================================================== -->
+                <section class="slide" id="slide-4">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                        <h2>Compra Pública y SECOP II</h2>
+                        <p style="font-size:12px; color:var(--text-muted);"><i class="fa-solid fa-arrow-pointer"></i> Interactúe con las tarjetas</p>
+                    </div>
+                    <div class="flip-grid" style="margin-top:20px;">
+                        
+                        <!-- Tarjeta 1: Marco Legal -->
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-front">
+                                    <i class="fa-solid fa-scale-balanced" style="font-size:50px; color:var(--color-primary); margin-bottom:20px;"></i>
+                                    <h3>Marco Legal</h3>
+                                    <span style="font-size:12px; color:#888;">Reglas del Juego</span>
+                                </div>
+                                <div class="flip-back">
+                                    <h3>Normativa Clave</h3>
+                                    <ul>
+                                        <li><strong>Decreto 1082 (2015):</strong> Manual base de contratación.</li>
+                                        <li><strong>Decreto 874 (2024):</strong> Compras de economía popular.</li>
+                                    </ul>
+                                    <button class="btn-white-outline" onclick="event.stopPropagation(); app.openModal('m-marco-legal')" style="margin-top:15px; font-size:12px;">Ver Detalles</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 2: SECOP II (Video Embed) -->
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-front">
+                                    <i class="fa-solid fa-laptop-code" style="font-size:50px; color:var(--color-secondary); margin-bottom:20px;"></i>
+                                    <h3>SECOP II</h3>
+                                    <span style="font-size:12px; color:#888;">Plataforma Digital</span>
+                                </div>
+                                <div class="flip-back">
+                                    <!-- VIDEO FALLBACK CARD -->
+                                    <div style="width:100%; height:140px; margin-bottom:15px;">
+                                        <a href="https://youtu.be/BMGj_7pd-74" target="_blank" class="video-fallback-card" style="width:100%; height:100%; background-image: url('https://img.youtube.com/vi/BMGj_7pd-74/maxresdefault.jpg');">
+                                            <div class="play-button"><i class="fa-solid fa-play"></i></div>
+                                        </a>
+                                    </div>
+                                    
+                                    <p style="font-size:12px; margin-bottom:10px; line-height:1.3;">Historia y tutoriales de uso de la plataforma estatal.</p>
+                                    
+                                    <a href="https://www.youtube.com/watch?v=LaMoq4e0zCc" target="_blank" class="btn-white-outline" style="width:100%; justify-content:center; font-size:11px;">
+                                        <i class="fa-brands fa-youtube"></i> Ver Tutorial Completo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 3: Requisitos -->
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-front">
+                                    <i class="fa-solid fa-clipboard-check" style="font-size:50px; color:var(--color-success); margin-bottom:20px;"></i>
+                                    <h3>Requisitos</h3>
+                                    <span style="font-size:12px; color:#888;">Documentación</span>
+                                </div>
+                                <div class="flip-back">
+                                    <h3>Checklist Vital</h3>
+                                    <p style="font-size:13px;">Sin papeles al día, no hay contrato.</p>
+                                    <button class="btn-white-outline" onclick="event.stopPropagation(); app.openModal('m-checklist')" style="margin-top:auto; width:100%; background:white; color:var(--color-success);">
+                                        <i class="fa-solid fa-list-check"></i> Validar Ahora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ==================================================================
+                     SLIDE 5: GESTIÓN DE RIESGOS
+                     ================================================================== -->
+                <section class="slide" id="slide-5">
+                    <h2>Gestión de Riesgos</h2>
+                    <p>Anticipar problemas es la clave de la rentabilidad en el sector B2G.</p>
+                    
+                    <div class="risk-grid">
+                        <div class="risk-card" onclick="app.openModal('m-flujo')">
+                            <div class="icon-box"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                            <h4 style="margin-bottom:8px;">Flujo de Caja</h4>
+                            <p style="font-size:13px; color:#666;">El Estado paga a 90 días. Tus proveedores cobran a 30.</p>
+                            <span style="margin-top:auto; font-size:12px; color:var(--color-primary); font-weight:600;">Ver Solución →</span>
+                        </div>
+
+                        <div class="risk-card" onclick="app.openModal('m-stock')">
+                            <div class="icon-box"><i class="fa-solid fa-boxes-packing"></i></div>
+                            <h4 style="margin-bottom:8px;">Inventario</h4>
+                            <p style="font-size:13px; color:#666;">Ofertar sin tener el libro físico es peligroso.</p>
+                            <span style="margin-top:auto; font-size:12px; color:var(--color-primary); font-weight:600;">Ver Solución →</span>
+                        </div>
+
+                        <div class="risk-card" onclick="app.openModal('m-legal')">
+                            <div class="icon-box"><i class="fa-solid fa-file-contract"></i></div>
+                            <h4 style="margin-bottom:8px;">Formalidad</h4>
+                            <p style="font-size:13px; color:#666;">Un día de mora en Seguridad Social bloquea tu pago.</p>
+                            <span style="margin-top:auto; font-size:12px; color:var(--color-primary); font-weight:600;">Ver Solución →</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================================
+                     SLIDE 6: CIERRE Y CONTACTO
+                     [ZONA EDITABLE] Número de WhatsApp y enlaces sociales
+                     ================================================================== -->
+                <section class="slide" id="slide-6">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
+                        <h1 style="font-size: 56px;">¡Gracias!</h1>
+                        <p style="font-size: 20px; font-style: italic; max-width: 700px; margin-bottom: 40px;">"La venta institucional es la mejor forma de llevar la cultura a donde la gente trabaja y estudia."</p>
+                        
+                        <div style="background: #FAFAFA; padding: 40px; border-radius: 24px; border: 1px solid #eee; box-shadow: var(--shadow-md); width: 100%; max-width: 600px;">
+                            <h3 style="color: var(--color-primary); margin-bottom: 20px;">Sigamos Conversando</h3>
+                            
+                            <div style="display:flex; gap: 20px; justify-content: center; margin-bottom: 30px;">
+                                <a href="#" class="btn-secondary-outline"><i class="fa-brands fa-instagram"></i> @alpiedelaletra</a>
+                                <a href="#" class="btn-secondary-outline"><i class="fa-solid fa-globe"></i> Sitio Web</a>
+                            </div>
+
+                            <a href="https://api.whatsapp.com/send?phone=573006522368&text=Hola,%20vengo%20de%20ver%20la%20presentación%20institucional%20y%20me%20interesa%20saber%20más" target="_blank" class="btn-main" style="width: 100%; justify-content: center; background: #25D366;">
+                                <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Contactar por WhatsApp
+                            </a>
                         </div>
                     </div>
                 </section>
 
             </main>
 
-            <!-- MODALES -->
-            <div class="modal-backdrop" id="m-marco-legal" onclick="app.closeModal(event)"><div class="modal-content" style="width: 800px;"><span class="close-modal" onclick="app.forceClose('m-marco-legal')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Marco Legal de Compras Públicas</h2><p style="font-size:15px; color:#555; margin-bottom:20px;">En Colombia, las compras públicas de libros están reguladas por diversas leyes y decretos.</p><ul class="legal-list"><li><strong>Decreto 4170 de 2011</strong>Establece la Agencia Nacional de Contratación Pública (ANCP).<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44643" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li><li><strong>Decreto 1082 de 2015</strong>Regula el uso de la Circular Externa Única.<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=62518" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li><li><strong>Decreto 92 de 2017</strong>Establece pautas para acreditar idoneidad.<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=78935" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li><li><strong>Decreto 874 de 2024</strong>Contratación directa con economía popular.<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=244716" target="_blank" class="legal-link">Ver Decreto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a></li></ul></div></div>
-            <div class="modal-backdrop" id="m-checklist" onclick="app.closeModal(event)"><div class="modal-content" style="width: 600px;"><span class="close-modal" onclick="app.forceClose('m-checklist')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 10px;">Validación de Requisitos</h2><p style="margin-bottom: 20px; color: #666;">Marque los documentos que ya tiene listos para verificar su estado:</p><div class="progress-container"><div class="progress-bar" id="checklist-progress">0%</div></div><div class="interactive-checklist"><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>RUT Actualizado</strong><span>Con código CIIU (4761) correcto.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Cámara de Comercio</strong><span>Vigencia no mayor a 30-90 días.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Antecedentes Fiscales</strong><span>Empresa y Representante Legal.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Antecedentes Disciplinarios</strong><span>Vigentes.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Antecedentes Judiciales</strong><span>Verificación de delitos.</span></div></div><div class="check-item" onclick="app.toggleCheck(this)"><div class="check-circle"><i class="fa-solid fa-check"></i></div><div class="check-text"><strong>Seguridad Social (PILA)</strong><span>Al día.</span></div></div></div><div id="checklist-success-msg" style="display:none; margin-top:20px; padding:15px; background:#e3fcef; color:#0f5132; border-radius:10px; text-align:center; font-weight:600;"><i class="fa-solid fa-circle-check"></i> ¡Excelente! Todo listo para ofertar.</div></div></div>
-            <div class="modal-backdrop" id="m-flujo" onclick="app.closeModal(event)"><div class="modal-content"><span class="close-modal" onclick="app.forceClose('m-flujo')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Peligro Financiero</h2><p>Las instituciones públicas pagan a 60 o 90 días. Si pagas a tus proveedores a 30 días, te quedarás sin liquidez. Negocia plazos antes de ofertar.</p></div></div>
-            <div class="modal-backdrop" id="m-stock" onclick="app.closeModal(event)"><div class="modal-content"><span class="close-modal" onclick="app.forceClose('m-stock')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Stock Fantasma</h2><p>Nunca ofertes una cantidad masiva basándote solo en el sistema. Verifica físicamente o pide carta de compromiso a la editorial.</p></div></div>
-            <div class="modal-backdrop" id="m-legal" onclick="app.closeModal(event)"><div class="modal-content"><span class="close-modal" onclick="app.forceClose('m-legal')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 20px;">Informalidad</h2><p>Un solo día de retraso en la Seguridad Social o un RUT desactualizado bloquean el pago de una factura estatal inmediatamente.</p></div></div>
-            <div class="modal-backdrop" id="m-historia" onclick="app.closeModal(event)"><div class="modal-content" style="width: 90%; max-width: 1100px;"><span class="close-modal" onclick="app.forceClose('m-historia')">&times;</span><h2 style="color:var(--color-primary); margin-bottom: 40px; text-align: center;">Línea de Tiempo: Nuestra Historia</h2><div id="timeline-container" class="horizontal-timeline-container"></div></div></div>
+            <!-- ==================================================================
+               MODALES (CONTENIDO DETALLADO / OCULTO)
+               ================================================================== -->
+            
+            <!-- Modal Historia -->
+            <div class="modal-backdrop" id="m-historia" onclick="app.closeModal(event)">
+                <div class="modal-content">
+                    <div class="close-modal" onclick="app.forceClose('m-historia')">&times;</div>
+                    <h2 style="color:var(--color-primary);">Nuestra Trayectoria</h2>
+                    <div style="margin-top:30px; border-left: 3px solid #eee; padding-left: 30px;">
+                        <div style="margin-bottom: 30px; position: relative;">
+                            <div style="position:absolute; left:-39px; top:0; width:16px; height:16px; background:var(--color-secondary); border-radius:50%; border:3px solid white; box-shadow: 0 0 0 2px var(--color-secondary);"></div>
+                            <strong style="color:var(--color-secondary); font-size:18px;">1993</strong>
+                            <p>Apertura el 6 de diciembre. Negociación clave de "La mesa del silencio".</p>
+                        </div>
+                        <div style="margin-bottom: 30px; position: relative;">
+                            <div style="position:absolute; left:-39px; top:0; width:16px; height:16px; background:var(--color-secondary); border-radius:50%; border:3px solid white; box-shadow: 0 0 0 2px var(--color-secondary);"></div>
+                            <strong style="color:var(--color-secondary); font-size:18px;">2015</strong>
+                            <p>Expansión al Museo de Arte Moderno (MAMM). Un hito de confianza cultural.</p>
+                        </div>
+                        <div style="margin-bottom: 0; position: relative;">
+                            <div style="position:absolute; left:-39px; top:0; width:16px; height:16px; background:var(--color-primary); border-radius:50%; border:3px solid white; box-shadow: 0 0 0 2px var(--color-primary);"></div>
+                            <strong style="color:var(--color-primary); font-size:18px;">Hoy</strong>
+                            <p>Referente en gestión cultural, clubes de lectura y venta institucional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Checklist -->
+            <div class="modal-backdrop" id="m-checklist" onclick="app.closeModal(event)">
+                <div class="modal-content" style="max-width: 600px;">
+                    <div class="close-modal" onclick="app.forceClose('m-checklist')">&times;</div>
+                    <h2 style="color:var(--color-success);">Checklist de Oferente</h2>
+                    <p>Marque los documentos que tiene vigentes. Al completar todos, estará listo.</p>
+                    
+                    <div style="background: #eee; height: 10px; border-radius: 10px; margin: 20px 0; overflow: hidden;">
+                        <div id="progress-bar" style="width: 0%; height: 100%; background: var(--color-success); transition: width 0.3s;"></div>
+                    </div>
+
+                    <div class="checklist-container">
+                        <div class="check-row" onclick="app.toggleCheck(this)">
+                            <div class="check-box-custom"><i class="fa-solid fa-check" style="font-size:14px;"></i></div>
+                            <div><strong>RUT Actualizado</strong><br><span style="font-size:12px; color:#777;">Cód. CIIU 4761</span></div>
+                        </div>
+                        <div class="check-row" onclick="app.toggleCheck(this)">
+                            <div class="check-box-custom"><i class="fa-solid fa-check" style="font-size:14px;"></i></div>
+                            <div><strong>Cámara de Comercio</strong><br><span style="font-size:12px; color:#777;">Renovada (Menor a 30 días ideal)</span></div>
+                        </div>
+                        <div class="check-row" onclick="app.toggleCheck(this)">
+                            <div class="check-box-custom"><i class="fa-solid fa-check" style="font-size:14px;"></i></div>
+                            <div><strong>Planilla Seguridad Social</strong><br><span style="font-size:12px; color:#777;">Último mes pagado (PILA)</span></div>
+                        </div>
+                        <div class="check-row" onclick="app.toggleCheck(this)">
+                            <div class="check-box-custom"><i class="fa-solid fa-check" style="font-size:14px;"></i></div>
+                            <div><strong>Cert. Antecedentes</strong><br><span style="font-size:12px; color:#777;">Contraloría, Procuraduría, Policía</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modales de Riesgo -->
+            <div class="modal-backdrop" id="m-flujo" onclick="app.closeModal(event)">
+                <div class="modal-content" style="max-width:500px; text-align:center;">
+                    <div class="close-modal" onclick="app.forceClose('m-flujo')">&times;</div>
+                    <i class="fa-solid fa-money-bill-trend-up" style="font-size:50px; color:var(--color-primary); margin-bottom:20px;"></i>
+                    <h3>Solución: Asfixia Financiera</h3>
+                    <p>No oferte si no tiene capital de trabajo. Negocie con editoriales pagos a 90 días ("Back to back") usando el contrato estatal como garantía.</p>
+                </div>
+            </div>
+
+             <div class="modal-backdrop" id="m-stock" onclick="app.closeModal(event)">
+                <div class="modal-content" style="max-width:500px; text-align:center;">
+                    <div class="close-modal" onclick="app.forceClose('m-stock')">&times;</div>
+                    <i class="fa-solid fa-box-open" style="font-size:50px; color:var(--color-primary); margin-bottom:20px;"></i>
+                    <h3>Solución: Stock Fantasma</h3>
+                    <p>Los sistemas de inventario fallan. Antes de ofertar, pida a la editorial una "Carta de Compromiso de Reserva de Stock" firmada.</p>
+                </div>
+            </div>
+
+             <div class="modal-backdrop" id="m-legal" onclick="app.closeModal(event)">
+                <div class="modal-content" style="max-width:500px; text-align:center;">
+                    <div class="close-modal" onclick="app.forceClose('m-legal')">&times;</div>
+                    <i class="fa-solid fa-file-shield" style="font-size:50px; color:var(--color-primary); margin-bottom:20px;"></i>
+                    <h3>Solución: Bloqueo Legal</h3>
+                    <p>Automatice el pago de la seguridad social. Un error de un día puede impedirle cobrar una factura de millones durante meses.</p>
+                </div>
+            </div>
+
+            <div class="modal-backdrop" id="m-marco-legal" onclick="app.closeModal(event)">
+                <div class="modal-content" style="max-width:600px;">
+                    <div class="close-modal" onclick="app.forceClose('m-marco-legal')">&times;</div>
+                    <h2 style="color:var(--color-secondary);">Marco Normativo</h2>
+                    <p>Documentación oficial para profundizar:</p>
+                    <ul style="margin-top:20px; line-height:2;">
+                        <li><a href="#" style="color:var(--color-primary);">Decreto 1082 de 2015</a> - Sector Administrativo de Planeación.</li>
+                        <li><a href="#" style="color:var(--color-primary);">Ley 80 de 1993</a> - Estatuto General de Contratación.</li>
+                        <li><a href="#" style="color:var(--color-primary);">Guía Colombia Compra Eficiente</a> - Manuales para oferentes.</li>
+                    </ul>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -498,112 +798,102 @@
     <script>
         /**
          * ==========================================
-         * LÓGICA DE LA APLICACIÓN (JS)
+         * LÓGICA DE APLICACIÓN (JS)
+         * No modificar la lógica del "app" object
+         * a menos que se quiera cambiar el comportamiento.
          * ==========================================
          */
-        window.app = (function() {
-            
-            // DATOS DE LA HISTORIA
-            const timelineData = [
-                { year: "1993", title: "El Origen", desc: "La familia Melo González funda la librería tras negociar 'La mesa del silencio'. Apertura: 6 de Diciembre." },
-                { year: "2015", title: "Sede MAMM", desc: "Expansión clave en el Museo de Arte Moderno de Medellín. Crecimiento basado en confianza editorial." },
-                { year: "2023", title: "30 Años", desc: "Celebración de tres décadas como referente cultural. Consolidación de clubes de lectura ('El Murito')." },
-                { year: "2025", title: "IA & Vigencia", desc: "Reto actual: Mantener la esencia humana del librero frente a la revolución de la IA." }
-            ];
+        const app = {
+            state: {
+                currentSlide: 0,
+                totalSlides: 7
+            },
 
-            // Renderiza la línea de tiempo dinámicamente
-            function renderTimeline() {
-                const container = document.getElementById('timeline-container');
-                if(!container) return;
-                container.innerHTML = '';
-                timelineData.forEach(item => {
-                    container.innerHTML += `<div class="h-timeline-item"><div class="h-timeline-year">${item.year}</div><div class="h-timeline-content"><strong>${item.title}</strong><p>${item.desc}</p></div></div>`;
+            init: function() {
+                this.fitToScreen();
+                window.addEventListener('resize', () => this.fitToScreen());
+                
+                // Soporte de Teclado para navegación accesible
+                document.addEventListener('keydown', (e) => {
+                    if(e.key === 'ArrowRight' || e.key === ' ') this.nextSlide();
+                    if(e.key === 'ArrowLeft') this.prevSlide();
+                    if(e.key === 'Escape') this.closeAllModals();
                 });
-            }
 
-            // Ajusta la escala de la presentación
-            function fitToScreen() {
+                this.goToSlide(0);
+            },
+
+            fitToScreen: function() {
                 const wrapper = document.getElementById('scale-wrapper');
                 const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.95;
                 wrapper.style.transform = `scale(${scale})`;
-            }
+            },
 
-            // API Pública
-            return {
-                init: function() {
-                    window.addEventListener('load', () => { fitToScreen(); this.goToSlide(0); renderTimeline(); });
-                    window.addEventListener('resize', fitToScreen);
-                },
-
-                goToSlide: function(index) {
-                    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                    
-                    const targetSlide = document.getElementById('slide-' + index);
-                    const targetNav = document.querySelectorAll('.nav-item')[index];
-
-                    if (targetSlide) targetSlide.classList.add('active');
-                    if (targetNav) targetNav.classList.add('active');
-                    
-                    document.getElementById('current-slide-num').innerText = index + 1;
-                },
-
-                openTab: function(index) {
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-
-                    const content = document.querySelectorAll('.tab-content')[index];
-                    const btn = document.querySelectorAll('.tab-btn')[index];
-
-                    if(content) content.classList.add('active');
-                    if(btn) btn.classList.add('active');
-                },
-
-                openModal: function(id) {
-                    const el = document.getElementById(id);
-                    if(el) el.classList.add('visible');
-                },
+            goToSlide: function(index) {
+                if (index < 0 || index >= this.state.totalSlides) return;
                 
-                closeModal: function(e) {
-                    if(e.target.classList.contains('modal-backdrop')) {
-                        e.target.classList.remove('visible');
-                    }
-                },
-                
-                forceClose: function(id) {
-                    const el = document.getElementById(id);
-                    if(el) el.classList.remove('visible');
-                },
+                this.state.currentSlide = index;
 
-                toggleCheck: function(element) {
-                    element.classList.toggle('checked');
-                    const total = document.querySelectorAll('.check-item').length;
-                    const checked = document.querySelectorAll('.check-item.checked').length;
-                    const percentage = Math.round((checked / total) * 100);
-                    
-                    const bar = document.getElementById('checklist-progress');
-                    if(bar) {
-                        bar.style.width = percentage + '%';
-                        bar.innerText = percentage + '%';
-                    }
-                    
-                    const successMsg = document.getElementById('checklist-success-msg');
-                    if(successMsg) {
-                        successMsg.style.display = (percentage === 100) ? 'block' : 'none';
-                    }
+                document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+                const slide = document.getElementById(`slide-${index}`);
+                const navItem = document.querySelectorAll('.nav-item')[index];
+
+                if(slide) slide.classList.add('active');
+                if(navItem) navItem.classList.add('active');
+            },
+
+            nextSlide: function() { this.goToSlide(this.state.currentSlide + 1); },
+            prevSlide: function() { this.goToSlide(this.state.currentSlide - 1); },
+
+            // Gestión de Modales
+            openModal: function(id) {
+                const el = document.getElementById(id);
+                if(el) el.classList.add('visible');
+            },
+            closeModal: function(e) {
+                if(e.target.classList.contains('modal-backdrop')) {
+                    e.target.classList.remove('visible');
                 }
-            };
+            },
+            forceClose: function(id) {
+                document.getElementById(id).classList.remove('visible');
+            },
+            closeAllModals: function() {
+                document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('visible'));
+            },
 
-        })();
+            // Lógica del Checklist con efecto Confetti
+            toggleCheck: function(el) {
+                el.classList.toggle('completed');
+                this.updateProgress();
+            },
 
-        // Arranque robusto
-        window.addEventListener('load', () => window.app.init());
-        document.addEventListener('DOMContentLoaded', () => window.app.init());
-        window.addEventListener('resize', () => {
-            const wrapper = document.getElementById('scale-wrapper');
-            const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.95;
-            wrapper.style.transform = `scale(${scale})`;
-        });
+            updateProgress: function() {
+                const total = document.querySelectorAll('.check-row').length;
+                const completed = document.querySelectorAll('.check-row.completed').length;
+                const pct = (completed / total) * 100;
+                
+                document.getElementById('progress-bar').style.width = `${pct}%`;
+
+                if (pct === 100) {
+                    this.triggerConfetti();
+                }
+            },
+
+            triggerConfetti: function() {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#C62828', '#0277BD', '#FFD600']
+                });
+            }
+        };
+
+        // Inicializar app
+        window.onload = () => app.init();
 
     </script>
 </body>
